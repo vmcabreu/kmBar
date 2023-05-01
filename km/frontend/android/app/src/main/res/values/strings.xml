@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">KMBar</string>
+    <string name="title_activity_main">KMBar</string>
+    <string name="package_name">com.app.KMBar</string>
+    <string name="custom_url_scheme">com.app.KMBar</string>
+</resources>
