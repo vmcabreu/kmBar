@@ -11,7 +11,7 @@ export class MesasService {
   constructor(private http: HttpClient) { }
   url: String = "http://kmbar.alu6618.arkania.es/api/controller/";
 
-  getComida():Observable<Mesas[]> {
+  getMesas():Observable<Mesas[]> {
     return this.http.get<Mesas[]>(this.url+'mesas/list.php');
   }
 

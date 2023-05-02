@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../inc/bootstrap.php");
 
 class DAOMesa
 {
-    public static function listaMesas(int $limit = 20): array
+    public static function listaMesas(int $limit = 12): array
     {
         $stmt = BaseDAO::consulta("SELECT * FROM mesas LIMIT $limit");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

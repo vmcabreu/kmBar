@@ -1,1 +1,10 @@
-<p>mesas works!</p>
+<div *ngFor="let mesa of listaMesas">
+  <button class="btnCard" routerLink="/mesas">
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Mesa {{mesa.id}}</p>
+        <p class="text-body">Consulta las mesas y su comanda</p>
+      </div>
+    </div>
+  </button>
+</div>
