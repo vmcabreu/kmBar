@@ -2,10 +2,10 @@ import { Comanda } from "./comanda.model";
 
 export class Mesas {
   id: number;
-  comanda: Comanda;
+  comanda_id: number;
 
-  constructor(id: number, comanda: Comanda) {
+  constructor(id: number, comanda_id: number) {
     this.id = id;
-    this.comanda = comanda;
+    this.comanda_id = comanda_id;
   }
 }
