@@ -19,7 +19,6 @@ export class ComidaComponent {
 
   getListaByRuta() {
     let ruta: string[] = this.router.url.split("/").splice(1,2);
-    console.log(this.firstToUpperCase(ruta[1]));
     if (ruta.length > 1) {
       this.getListaComidasCategoria(ruta[1]);
     } else {
@@ -36,6 +35,7 @@ export class ComidaComponent {
   }
 
   getListaComidasCategoria(categoria: string): void {
+    console.log(categoria);
     this.comidaService.getComidaCategoria(this.firstToUpperCase(categoria)).subscribe(
       (data: Comida[]) => {
         this.listaComida = data;
