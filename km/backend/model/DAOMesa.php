@@ -6,7 +6,7 @@ class DAOMesa
 {
     public static function listaMesas(): array
     {
-        $stmt = BaseDAO::consulta("SELECT * FROM mesas");
+        $stmt = BaseDAO::consulta("SELECT * FROM mesas ORDER BY id");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
