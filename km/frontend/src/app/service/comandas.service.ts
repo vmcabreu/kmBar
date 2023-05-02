@@ -13,9 +13,9 @@ export class ComandasService {
   url: String = "http://kmbar.alu6618.arkania.es/api/controller/";
 
   getComandas():Observable<Comanda[]> {
-    return this.http.get<Comanda[]>(this.url+'comanda/list.php');
+    return this.http.get<Comanda[]>(this.url+'comandas/list.php');
   }
   getResumenComanda(id:number):Observable<Comanda[]> {
-    return this.http.get<Comanda[]>(this.url+'comanda/list.php?id='+id);
+    return this.http.get<Comanda[]>(this.url+'comandas/list.php?id='+id);
   }
 }
