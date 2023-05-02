@@ -22,7 +22,7 @@ export class BebidasComponent {
 getListaByRuta() {
   let ruta: string[] = this.router.url.split("/").splice(1,2);
   if (ruta.length > 1) {
-    this.getListaBebidaCategoria(encodeURI(ruta[1]));
+    this.getListaBebidaCategoria(ruta[1]);
   } else {
     this.getListaBebidas()
   }

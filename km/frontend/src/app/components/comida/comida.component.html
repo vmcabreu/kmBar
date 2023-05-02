@@ -1,7 +1,14 @@
-<div *ngFor="let comida of listaComida">
-  <div>
-  <p>{{comida.nombre}}</p>
-  <p>{{comida.categoria}}</p>
-  <p>{{comida.precio.toFixed(2)}}€</p>
-</div>
+<div>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Categoría</th>
+      <th>Precio</th>
+    </tr>
+    <tr  *ngFor="let comida of listaComida">
+      <td>{{comida.nombre}}</td>
+      <td>{{comida.categoria}}</td>
+      <td>{{comida.precio.toFixed(2)}}€</td>
+    </tr>
+  </table>
 </div>

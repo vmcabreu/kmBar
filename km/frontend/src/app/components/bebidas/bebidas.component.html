@@ -1,7 +1,14 @@
-<div *ngFor="let bebida of listaBebidas">
-  <div>
-  <p>{{bebida.nombre}}</p>
-  <p>{{bebida.categoria}}</p>
-  <p>{{bebida.precio.toFixed(2)}}€</p>
-</div>
+<div>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Categoría</th>
+      <th>Precio</th>
+    </tr>
+    <tr  *ngFor="let bebida of listaBebidas">
+      <td>{{bebida.nombre}}</td>
+      <td>{{bebida.categoria}}</td>
+      <td>{{bebida.precio.toFixed(2)}}€</td>
+    </tr>
+  </table>
 </div>
