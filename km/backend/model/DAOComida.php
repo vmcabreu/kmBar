@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../inc/bootstrap.php");
 
 class DAOComida
 {
-    public static function listaComida(int $limit = 20): array
+    public static function listaComida(int $limit = 10000): array
     {
         $stmt = BaseDAO::consulta("SELECT * FROM comida LIMIT $limit");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
