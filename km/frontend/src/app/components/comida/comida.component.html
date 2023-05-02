@@ -1,1 +1,7 @@
-<p>comida works!</p>
+<div *ngFor="let comida of listaComida">
+  <div>
+  <p>{{comida.nombre}}</p>
+  <p>{{comida.categoria}}</p>
+  <p>{{comida.precio.toFixed(2)}}€</p>
+</div>
+</div>

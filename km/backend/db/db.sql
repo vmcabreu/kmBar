@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS comanda (
   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE comanda_detalle (
+CREATE TABLE IF NOT EXISTS comanda_detalle (
   id INT auto_increment,
   comanda_id INT NOT NULL,
   comida_id INT NOT NULL,

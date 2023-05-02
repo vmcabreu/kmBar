@@ -1,1 +1,60 @@
-<p>menu works!</p>
+<div>
+  <button>Mostrar mesas</button>
+  <button>Mostrar bebidas</button>
+  <button class="btnCard" data-bs-toggle="modal" data-bs-target="#comidaModal">
+  <div class="card">
+    <div class="card-details">
+      <p class="text-title">Comida</p>
+      <p class="text-body">Consulta todos los platos disponibles</p>
+    </div>
+  </div>
+</button>
+</div>
+
+<div class="modal fade" id="comidaModal" tabindex="-1" aria-labelledby="comidaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="comidaModalLabel">Selecciona una ópcion</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+        <h3>Lista</h3>
+        <button class="btn btn-primary" routerLink="/comida">Ver lista de todas las comidas</button>
+        </div>
+        <div>
+          <h3>Por categorías</h3>
+          <button class="btnCard" routerLink="/comida/para_picar" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Para picar</p>
+                <p class="text-body">Consulta todos los platos para picar</p>
+              </div>
+            </div>
+          </button>
+          <button class="btnCard" routerLink="/comida/bocadillos" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Bocadillos</p>
+                <p class="text-body">Consulta todos los bocadillos</p>
+              </div>
+            </div>
+          </button>
+          <button class="btnCard" routerLink="/comida/hamburguesas" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Hamburguesas</p>
+                <p class="text-body">Consulta todos las hamburguesas</p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

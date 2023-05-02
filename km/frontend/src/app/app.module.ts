@@ -9,6 +9,7 @@ import { MesasComponent } from './components/mesas/mesas.component';
 import { ComandasComponent } from './components/comandas/comandas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PrecioPipe } from './pipes/precio.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     BebidasComponent,
     ComidaComponent,
     MesasComponent,
-    ComandasComponent
+    ComandasComponent,
+    PrecioPipe
   ],
   imports: [
     BrowserModule,
