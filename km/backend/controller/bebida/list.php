@@ -4,6 +4,9 @@ require_once(__DIR__ . "../../../inc/bootstrap.php");
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['categoria'])) {
         $categoria = $_GET['categoria'];
+        if (str_contains($categoria,"_")) {
+            $categoria = str_replace("_"," ",$categoria);
+        }
         $listaBebidas = DAOBebida::listaBebidaPorCategoria($categoria);
         if ($listaBebidas != null) {
             echo json_encode($listaBebidas,JSON_UNESCAPED_UNICODE);
