@@ -6,8 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $categoria = $_GET['categoria'];
         if (strpos($categoria,'_') !== false) {
             $categoria = str_replace("_"," ",$categoria);
+            $listaBebidas = DAOBebida::listaBebidaPorCategoria($categoria);
+        }else{
+            $listaBebidas = DAOBebida::listaBebidaPorCategoria($categoria);
         }
-        $listaBebidas = DAOBebida::listaBebidaPorCategoria($categoria);
+
         if ($listaBebidas != null) {
             echo json_encode($listaBebidas,JSON_UNESCAPED_UNICODE);
         } else {
