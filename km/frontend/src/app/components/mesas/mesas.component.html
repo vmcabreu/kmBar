@@ -1,10 +1,30 @@
-<div *ngFor="let mesa of listaMesas">
-  <button class="btnCard" routerLink="/mesas">
-    <div class="card">
-      <div class="card-details">
-        <p class="text-title">Mesa {{mesa.id}}</p>
-        <p class="text-body">Consulta las mesas y su comanda</p>
+<div class="d-flex flex-wrap justify-content-center">
+  <div *ngFor="let mesa of listaMesas">
+    <button class="btnCard" routerLink="/mesas/{{mesa.id}}">
+      <div class="card">
+        <div class="card-details">
+          <div *ngIf="mesa.id <= 10;then nMesa else ventana "></div>
+          <div *ngIf="mesa.comanda_id == null;then desocupado else ocupado "></div>
+          <ng-template #nMesa>
+            <p class="text-title">Mesa {{mesa.id}}</p>
+          </ng-template>
+          <ng-template #ocupado>
+            <p class="text-body"></p>
+          </ng-template>
+          <ng-template #desocupado>
+            <p class="text-body">Libre</p>
+          </ng-template>
+          <ng-template #ventana>
+            <p class="text-title">Ventana {{mesa.id}}</p>
+          </ng-template>
+          <ng-template #ocupado>
+            <p class="text-body">Consulta las mesas y su comanda</p>
+          </ng-template>
+          <ng-template #desocupado>
+            <p class="text-body">Consulta las mesas y su comanda</p>
+          </ng-template>
+        </div>
       </div>
-    </div>
-  </button>
+    </button>
+  </div>
 </div>

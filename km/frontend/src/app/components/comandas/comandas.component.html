@@ -1,1 +1,9 @@
-<p>comandas works!</p>
+<h1>{{mesa}}</h1>
+<div>
+  <div *ngFor="let producto of listaComanda">
+    <p>{{producto.nombre}}</p>
+    <p>{{producto.precio}}</p>
+    <p>{{producto.cantidad}}</p>
+    <p>{{producto.total}}</p>
+  </div>
+</div>

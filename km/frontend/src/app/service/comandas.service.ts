@@ -12,7 +12,10 @@ export class ComandasService {
   constructor(private http: HttpClient) { }
   url: String = "http://kmbar.alu6618.arkania.es/api/controller/";
 
-  getBebidas():Observable<Comanda[]> {
+  getComandas():Observable<Comanda[]> {
     return this.http.get<Comanda[]>(this.url+'comanda/list.php');
+  }
+  getResumenComanda(id:number):Observable<Comanda[]> {
+    return this.http.get<Comanda[]>(this.url+'comanda/list.php?id='+id);
   }
 }
