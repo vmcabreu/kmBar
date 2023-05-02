@@ -5,7 +5,7 @@ class Comida
     private $atributos = ['id' => null, 'nombre' => "", 'categoria' => "", 'precio' => 0];
 
 
-    public function __construct(int $id = null, string $nombre = "", string $categoria = "", string $precio = 0)
+    public function __construct(int $id = null, string $nombre = "", string $categoria = "", int $precio = 0)
     {
         $this->id = $id;
         $this->nombre = $nombre;
