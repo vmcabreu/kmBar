@@ -1,6 +1,24 @@
 <div>
-  <button>Mostrar mesas</button>
-  <button>Mostrar bebidas</button>
+  <h2>Mesas & Comandas</h2>
+  <button class="btnCard">
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Mesas</p>
+        <p class="text-body">Consulta las mesas y su comanda</p>
+      </div>
+    </div>
+  </button>
+</div>
+<div>
+  <h2>Productos</h2>
+  <button class="btnCard" data-bs-toggle="modal" data-bs-target="#bebidaModal">
+    <div class="card">
+      <div class="card-details">
+        <p class="text-title">Bebidas</p>
+        <p class="text-body">Consulta todos las bebidas disponibles</p>
+      </div>
+    </div>
+  </button>
   <button class="btnCard" data-bs-toggle="modal" data-bs-target="#comidaModal">
   <div class="card">
     <div class="card-details">
@@ -11,11 +29,75 @@
 </button>
 </div>
 
+<div class="modal fade" id="bebidaModal" tabindex="-1" aria-labelledby="bebidaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="bebidaModalLabel">Selecciona una opción</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+        <h3>Lista</h3>
+        <button class="btn btn-primary" routerLink="/bebidas">Ver lista de todas las bebidas</button>
+        </div>
+        <div>
+          <h3>Por categorías</h3>
+          <button class="btnCard" routerLink="/bebidas/café" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Café</p>
+                <p class="text-body">Consulta todos los cafés</p>
+              </div>
+            </div>
+          </button>
+          <button class="btnCard" routerLink="/bebidas/cervezas" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Cervezas</p>
+                <p class="text-body">Consulta todos las cervezas</p>
+              </div>
+            </div>
+          </button>
+          <button class="btnCard" routerLink="/bebidas/bebidas_sin_alcohol" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Bebidas sin alcohol</p>
+                <p class="text-body">Consulta todas las bebidas sin alcohol</p>
+              </div>
+            </div>
+          </button>
+          <button class="btnCard" routerLink="/bebidas/vinos" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Vinos</p>
+                <p class="text-body">Consulta todas los vinos</p>
+              </div>
+            </div>
+          </button>
+          <button class="btnCard" routerLink="/bebidas/bebidas_alcohólicas" data-bs-dismiss="modal">
+            <div class="card">
+              <div class="card-details">
+                <p class="text-title">Bebidas alcohólicas</p>
+                <p class="text-body">Consulta todas las bebidas alcohólicas</p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="comidaModal" tabindex="-1" aria-labelledby="comidaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="comidaModalLabel">Selecciona una ópcion</h1>
+        <h1 class="modal-title fs-5" id="comidaModalLabel">Selecciona una opción</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
