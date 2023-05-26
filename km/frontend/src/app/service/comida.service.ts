@@ -9,7 +9,7 @@ import { Comida } from '../model/comida.model';
 export class ComidaService {
 
   constructor(private http: HttpClient) { }
-  url: String = "http://kmbar.alu6618.arkania.es/api/controller/";
+  url: String = "https://kmbar.me/api/controller/";
 
   getComida():Observable<Comida[]> {
     return this.http.get<Comida[]>(this.url+'comida/list.php');

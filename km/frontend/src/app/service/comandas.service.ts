@@ -10,7 +10,7 @@ import { Comanda } from '../model/comanda.model';
 export class ComandasService {
 
   constructor(private http: HttpClient) { }
-  url: String = "http://kmbar.alu6618.arkania.es/api/controller/";
+  url: String = "https://kmbar.me/api/controller/";
 
   getComandas():Observable<Comanda[]> {
     return this.http.get<Comanda[]>(this.url+'comandas/list.php');

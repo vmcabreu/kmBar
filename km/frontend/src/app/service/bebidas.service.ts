@@ -9,7 +9,7 @@ import { Bebida } from '../model/bebida.model';
 export class BebidasService {
 
   constructor(private http: HttpClient) { }
-  url: String = "http://kmbar.alu6618.arkania.es/api/controller/";
+  url: String = "https://kmbar.me/api/controller/";
 
   getBebidas():Observable<Bebida[]> {
     return this.http.get<Bebida[]>(this.url+'bebida/list.php');

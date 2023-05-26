@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class MesasService {
 
   constructor(private http: HttpClient) { }
-  url: String = "http://kmbar.alu6618.arkania.es/api/controller/";
+  url: String = "https://kmbar.me/api/controller/";
 
   getMesas():Observable<Mesas[]> {
     return this.http.get<Mesas[]>(this.url+'mesas/list.php');
