@@ -7,9 +7,11 @@ import { BebidasComponent } from './components/bebidas/bebidas.component';
 import { ComidaComponent } from './components/comida/comida.component';
 import { MesasComponent } from './components/mesas/mesas.component';
 import { ComandasComponent } from './components/comandas/comandas.component';
-import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PrecioPipe } from './pipes/precio.pipe';
+import { AuthInterceptor } from './service/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { PrecioPipe } from './pipes/precio.pipe';
     ComidaComponent,
     MesasComponent,
     ComandasComponent,
-    PrecioPipe
+    LoginComponent,
+    PrecioPipe,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,9 @@ import { PrecioPipe } from './pipes/precio.pipe';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
