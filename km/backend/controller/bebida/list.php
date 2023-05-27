@@ -20,6 +20,7 @@ if (isset($headers['Authorization'])) {
             } else {
                 $listaBebidas = DAOBebida::listaBebida();
                 if ($listaBebidas != null) {
+                    http_response_code(200);
                     echo json_encode($listaBebidas, JSON_UNESCAPED_UNICODE);
                 } else {
                     http_response_code(404);

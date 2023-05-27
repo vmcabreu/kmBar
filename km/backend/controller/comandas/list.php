@@ -10,6 +10,7 @@ if (isset($headers['Authorization'])) {
                 $id = intval($_GET['id']);
                 $listaPedido = DAOComanda::realizarResumenComanda($id);
                 if ($listaPedido != null) {
+                    http_response_code(200);
                     echo json_encode($listaPedido, JSON_UNESCAPED_UNICODE);
                 } else {
                     http_response_code(404);
@@ -18,6 +19,7 @@ if (isset($headers['Authorization'])) {
             } else {
                 $listaMesas = DAOComanda::listaComanda();
                 if ($listaMesas != null) {
+                    http_response_code(200);
                     echo json_encode($listaMesas, JSON_UNESCAPED_UNICODE);
                 } else {
                     http_response_code(404);

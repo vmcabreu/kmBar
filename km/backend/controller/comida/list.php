@@ -11,6 +11,7 @@ if (isset($headers['Authorization'])) {
                 $categoria = str_replace('_', ' ', $categoria);
                 $listaComida = DAOComida::listaComidaPorCategoria($categoria);
                 if ($listaComida != null) {
+                    http_response_code(200);
                     echo json_encode($listaComida, JSON_UNESCAPED_UNICODE);
                 } else {
                     http_response_code(404);
@@ -19,6 +20,7 @@ if (isset($headers['Authorization'])) {
             } else {
                 $listaComida = DAOComida::listaComida();
                 if ($listaComida != null) {
+                    http_response_code(200);
                     echo json_encode($listaComida, JSON_UNESCAPED_UNICODE);
                 } else {
                     http_response_code(404);

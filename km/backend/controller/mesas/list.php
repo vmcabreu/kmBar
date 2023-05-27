@@ -8,6 +8,7 @@ if (isset($headers['Authorization'])) {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $listaMesas = DAOMesa::listaMesas();
             if ($listaMesas != null) {
+                http_response_code(200);
                 echo json_encode($listaMesas, JSON_UNESCAPED_UNICODE);
             } else {
                 http_response_code(404);
