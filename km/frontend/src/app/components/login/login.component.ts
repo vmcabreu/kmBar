@@ -32,7 +32,7 @@ export class LoginComponent {
       next: (res: any) => {
         this.loginService.loginGetUser(this.nombre, this.passwd).subscribe({
           next: (data: any) => {
-          localStorage.setItem('token', data.token);
+          sessionStorage.setItem('token', data.token);
           this.loginSuccess();
         },
         error: (error: HttpErrorResponse) => {
@@ -62,7 +62,7 @@ export class LoginComponent {
   }
 
   userLogged() {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (token && token !== '') {
       this.router.navigateByUrl('/');
     }
