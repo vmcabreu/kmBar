@@ -32,7 +32,7 @@ class Token
     {
         try {
             $token = JWT::decode($jwt, new Key(AUTHKEY, 'HS256'));
-            return $token->data;
+            return $token->id;
         } catch (\Exception $e) {
             return false;
         }
