@@ -1,11 +1,6 @@
 <?php
 require_once(__DIR__ . "../../../inc/bootstrap.php");
-$headers = apache_request_headers();
-header('Content-Type: application/json');
-if (isset($headers['Authorization'])) {
-    $bearerToken = explode(' ', $headers['Authorization']);
-    $token = $bearerToken[1];
-    if (Token::verifyToken($token)) {
+
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (isset($_GET['categoria'])) {
                 $categoria = urldecode($_GET['categoria']);
@@ -28,5 +23,3 @@ if (isset($headers['Authorization'])) {
                 }
             }
         }
-    }
-}
