@@ -16,8 +16,8 @@ class Token
     public static function generarTokenLog(Usuario $usuario): string
     {
         $payload = array(
-            "iss" => "http://contentkingdom.alu6618.arkania.es/api/controller/login/loginv2.php",
-            "aud" => "http://contentkingdom.alu6618.arkania.es/login",
+            "iss" => "https://kmbar.me/api/controller",
+            "aud" => "https://kmbar.me",
             "iat" => time(),
             "id" => $usuario->id,
             "nombre" => $usuario->usuario,
