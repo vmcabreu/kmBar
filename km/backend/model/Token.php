@@ -16,14 +16,17 @@ class Token
 
     public static function generarTokenLog(Usuario $usuario): string
     {
+        $data= array(
+            "id" => $usuario->id,
+            "nombre" => $usuario->usuario,
+            "email" => $usuario->email
+        );
         $payload = array(
             "iss" => "https://kmbar.me/api",
             "aud" => "https://kmbar.me",
             "iat" => time(),
             "exp" => time() + 604800,
-            "id" => $usuario->id,
-            "nombre" => $usuario->usuario,
-            "email" => $usuario->email
+            "data" => $data
         );
         return JWT::encode($payload, AUTHKEY, "HS256");
     }
@@ -32,7 +35,7 @@ class Token
     {
         try {
             $token = JWT::decode($jwt, new Key(AUTHKEY, 'HS256'));
-            return $token->id;
+            return $token->data;
         } catch (\Exception $e) {
             return false;
         }
