@@ -4,7 +4,10 @@ $headers = apache_request_headers();
 if (isset($headers['Authorization'])) {
     $bearerToken = explode(' ', $headers['Authorization']);
     $token = $bearerToken[1];
-    if (Token::verifyToken($token)) {
+    if (!$token || !Token::verifyToken($token)) {
+        http_response_code(401);
+        exit(json_encode(array("message" =>"Acceso denegado")));
+    }
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (isset($_GET['categoria'])) {
                 $categoria = $_GET['categoria'];
@@ -28,5 +31,5 @@ if (isset($headers['Authorization'])) {
                 }
             }
         }
-    }
+    
 }
