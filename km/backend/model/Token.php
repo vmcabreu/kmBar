@@ -2,6 +2,7 @@
 require_once(__DIR__ . "/../inc/bootstrap.php");
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class Token
 {
@@ -29,8 +30,8 @@ class Token
     public static function verifyToken($jwt)
     {
         try {
-            $token = JWT::decode($jwt, AUTHKEY, 'HS256');
-            return true;
+            $token = JWT::decode($jwt,new Key(AUTHKEY, 'HS256'));
+            return $token->data;
         } catch (\Exception $e) {
             return false;
         }
