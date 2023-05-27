@@ -5,15 +5,18 @@ import { BebidasComponent } from './components/bebidas/bebidas.component';
 import { ComidaComponent } from './components/comida/comida.component';
 import { MesasComponent } from './components/mesas/mesas.component';
 import { ComandasComponent } from './components/comandas/comandas.component';
+import { AuthGuard } from './service/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  {path: "", component: MenuComponent},
-  {path: "mesas", component: MesasComponent},
-  {path: "comida", component: ComidaComponent},
-  {path: "bebidas", component: BebidasComponent},
-  {path: "mesas/:id", component: ComandasComponent},
-  {path: "comida/:categoria", component: ComidaComponent},
-  {path: "bebidas/:categoria", component: BebidasComponent}
+  {path: "", component: MenuComponent,canActivate: [AuthGuard]},
+  {path: "login", component: LoginComponent},
+  {path: "mesas", component: MesasComponent,canActivate: [AuthGuard]},
+  {path: "comida", component: ComidaComponent,canActivate: [AuthGuard]},
+  {path: "bebidas", component: BebidasComponent,canActivate: [AuthGuard]},
+  {path: "mesas/:id", component: ComandasComponent,canActivate: [AuthGuard]},
+  {path: "comida/:categoria", component: ComidaComponent,canActivate: [AuthGuard]},
+  {path: "bebidas/:categoria", component: BebidasComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({

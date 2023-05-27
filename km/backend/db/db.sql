@@ -5,6 +5,14 @@ GRANT ALL ON KMBar.* TO 'KMBar'@'localhost';
 
 use KMBar;
 
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT auto_increment,
+  usuario varchar(30) NOT NULL UNIQUE,
+  passwd varchar(255) NOT NULL,
+  email varchar(40) NOT NULL UNIQUE,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS bebidas (
   id INT auto_increment,
   nombre varchar(255) NOT NULL,
