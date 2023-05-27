@@ -5,9 +5,6 @@ if (isset($headers['Authorization'])) {
     $bearerToken = explode(' ', $headers['Authorization']);
     $token = $bearerToken[1];
     if (Token::verifyToken($token)) {
-
-    }
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['categoria'])) {
             $categoria = $_GET['categoria'];
             $categoria = str_replace('_', ' ', $categoria);
@@ -29,5 +26,9 @@ if (isset($headers['Authorization'])) {
                 echo json_encode(array("message" => "No se encontró el usuario con ID " . $id));
             }
         }
+
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
     }
 }
