@@ -17,9 +17,10 @@ class Token
     public static function generarTokenLog(Usuario $usuario): string
     {
         $payload = array(
-            "iss" => "https://kmbar.me/api/controller",
+            "iss" => "https://kmbar.me/api",
             "aud" => "https://kmbar.me",
             "iat" => time(),
+            "exp" => time() + 604800,
             "id" => $usuario->id,
             "nombre" => $usuario->usuario,
             "email" => $usuario->email
@@ -30,7 +31,7 @@ class Token
     public static function verifyToken($jwt)
     {
         try {
-            $token = JWT::decode($jwt,new Key(AUTHKEY, 'HS256'));
+            $token = JWT::decode($jwt, new Key(AUTHKEY, 'HS256'));
             return $token->data;
         } catch (\Exception $e) {
             return false;
