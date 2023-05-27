@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "../../../inc/bootstrap.php");
 $headers = apache_request_headers();
+header('Content-Type: application/json');
 if (isset($headers['Authorization'])) {
     $bearerToken = explode(' ', $headers['Authorization']);
     $token = $bearerToken[1];
@@ -14,7 +15,7 @@ if (isset($headers['Authorization'])) {
                     echo json_encode($listaBebidas, JSON_UNESCAPED_UNICODE);
                 } else {
                     http_response_code(404);
-                    echo json_encode(array("message" => "No se encontró la comida con la categoría  " . $categoria));
+                    echo json_encode(array("message" => "No se encontró la bebida con la categoría  " . $categoria));
                 }
             } else {
                 $listaBebidas = DAOBebida::listaBebida();

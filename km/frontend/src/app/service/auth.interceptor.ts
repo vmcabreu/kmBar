@@ -6,7 +6,7 @@ import {
 
 export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const token = sessionStorage.getItem('jwt');
+    const token = sessionStorage.getItem('token');
 
     if (token) {
       const cloned = req.clone({
