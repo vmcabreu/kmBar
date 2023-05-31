@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
-c
 CREATE TABLE IF NOT EXISTS comida (
   id INT auto_increment,
   nombre varchar(255) NOT NULL,
