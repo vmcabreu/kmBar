@@ -26,9 +26,26 @@ class DAOComanda
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function aniadirComanda(Comanda $comanda): int
+    public static function nuevaComanda(): int
     {
-        $sql = "INSERT INTO comanda VALUES (null,'$comanda->fecha','$comanda->total')";
+        $fechaActual = date('Y-m-d');
+        $sql = "INSERT INTO comanda VALUES (null,'$fechaActual','0')";
+        return BaseDAO::consulta($sql);
+    }
+
+    public static function finalizarComanda(int $mesaid)
+    {
+        $sql = "UPDATE comanda
+        SET total = (
+            SELECT SUM((cd.cantidad * c.precio) + (bd.cantidad * b.precio))
+            FROM comanda_detalle cd
+            JOIN comida c ON cd.comida_id = c.id
+            JOIN bebida b ON cd.bebida_id = b.id
+            JOIN mesas m ON cd.comanda_id = m.comanda_id
+            WHERE m.id = $mesaid
+        )
+        WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);
+        ";
         return BaseDAO::consulta($sql);
     }
 

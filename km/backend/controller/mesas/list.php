@@ -17,5 +17,16 @@ if (isset($headers['Authorization'])) {
             http_response_code(404);
             echo json_encode(array("message" => "No se encontró la lista de mesas"));
         }
+    } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+        if (isset($_POST['mesaid'])) {
+            $id = intval($_POST['mesaid']);
+            $limpiarMesa = DAOMesa::limpiarMesa($id);
+            if ($limpiarMesa != null) {
+                http_response_code(200);
+            } else {
+                http_response_code(404);
+                echo json_encode(array("message" => "No se encontró la mesa"));
+            }
+        }
     }
 }

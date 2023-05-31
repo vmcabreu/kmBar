@@ -12,10 +12,19 @@ export class ComandasService {
   constructor(private http: HttpClient) { }
   url: String = "https://kmbar.me/api/controller/";
 
-  getComandas():Observable<Comanda[]> {
-    return this.http.get<Comanda[]>(this.url+'comandas/list.php');
+  getComandas(): Observable<Comanda[]> {
+    return this.http.get<Comanda[]>(this.url + 'comandas/list.php');
   }
-  getResumenComanda(id:number):Observable<Comanda[]> {
-    return this.http.get<Comanda[]>(this.url+'comandas/list.php?id='+id);
+
+  getResumenComanda(id: number): Observable<Comanda[]> {
+    return this.http.get<Comanda[]>(this.url + 'comandas/list.php?id=' + id);
+  }
+
+  nuevaComanda(): Observable<any> {
+    return this.http.post(this.url + 'comandas/add.php?type=new', null);
+  }
+
+  finalizarComanda(mesaid: number): Observable<any> {
+    return this.http.post(this.url + 'comandas/add.php?type=done&id=' + mesaid, null);
   }
 }

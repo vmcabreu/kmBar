@@ -39,11 +39,12 @@ CREATE TABLE IF NOT EXISTS comanda (
 CREATE TABLE IF NOT EXISTS comanda_detalle (
   id INT auto_increment,
   comanda_id INT NOT NULL,
-  comida_id INT NOT NULL,
+  comida_id INT,
+  bebida_id INT,
   cantidad INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (comanda_id) REFERENCES comanda(id),
-  FOREIGN KEY (comida_id) REFERENCES comida(id)
+  FOREIGN KEY (bebida_id) REFERENCES bebidas(id)
 );
 
 CREATE TABLE IF NOT EXISTS mesas (

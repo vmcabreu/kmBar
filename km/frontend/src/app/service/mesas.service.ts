@@ -11,8 +11,12 @@ export class MesasService {
   constructor(private http: HttpClient) { }
   url: String = "https://kmbar.me/api/controller/";
 
-  getMesas():Observable<Mesas[]> {
-    return this.http.get<Mesas[]>(this.url+'mesas/list.php');
+  getMesas(): Observable<Mesas[]> {
+    return this.http.get<Mesas[]>(this.url + 'mesas/list.php');
+  }
+
+  limpiarMesa(id: number): Observable<any> {
+    return this.http.put(this.url + 'mesas/list.php', { mesaid: id });
   }
 
 }
