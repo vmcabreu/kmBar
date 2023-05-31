@@ -13,7 +13,7 @@ if (isset($headers['Authorization'])) {
         $data = json_decode($json, true);
             $id = intval($data['mesaid']);
             $limpiarMesa = DAOMesa::limpiarMesa($id);
-            if ($limpiarMesa > 0) {
+            if ($limpiarMesa != null) {
                 http_response_code(200);
                 echo json_encode(array("message" => "Mesa ".$id ));
             } else {
