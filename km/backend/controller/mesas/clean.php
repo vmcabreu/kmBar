@@ -14,6 +14,7 @@ if (isset($headers['Authorization'])) {
             $limpiarMesa = DAOMesa::limpiarMesa($id);
             if ($limpiarMesa != null) {
                 http_response_code(200);
+                echo json_encode(array("message" => "Mesa ".$id ));
             } else {
                 http_response_code(404);
                 echo json_encode(array("message" => "No se encontró la mesa"));
