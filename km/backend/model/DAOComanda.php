@@ -37,7 +37,7 @@ class DAOComanda
     {
         $sql = "UPDATE comanda
                 SET total = $total
-                WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);
+                WHERE id = (SELECT comanda_id FROM (SELECT comanda_id FROM mesas WHERE id = $mesaid) AS temp);
     
                 UPDATE mesas
                 SET comanda_id = NULL
@@ -46,6 +46,7 @@ class DAOComanda
         
         return BaseDAO::consulta($sql);
     }
+    
 
 
 
