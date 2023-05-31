@@ -33,12 +33,17 @@ class DAOComanda
         return BaseDAO::consulta($sql);
     }
 
-    public static function finalizarComanda(int $mesaid,float $total)
+    public static function finalizarComanda(int $mesaid, float $total)
     {
         $sql = "UPDATE comanda
-        SET total = $total
-        WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);
-        ";
+                SET total = $total
+                WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);
+    
+                UPDATE mesas
+                SET comanda_id = NULL
+                WHERE comanda_id = (SELECT comanda_id FROM mesas WHERE id = $mesaid) AND $total <> 0;
+                ";
+        
         return BaseDAO::consulta($sql);
     }
 
