@@ -12,12 +12,10 @@ if (isset($headers['Authorization'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         if (isset($_GET['id'])) {
             $id = intval($_GET['id']);
-            $result = DAOComandaDetalles::borrarDetalleComanda($id);
-            if ($resultado) {
-                return http_response_code(204);
-            } else {
-                return http_response_code(422);
-            }
+            $respuestaDelete = DAOComandaDetalles::borrarDetalleComanda($id);
+            http_response_code($respuestaDelete > 0 ? 200 : 422);
+            echo json_encode(array("respuesta" => $respuestaDelete),JSON_UNESCAPED_UNICODE);
+            return;
         }
     }
 }
