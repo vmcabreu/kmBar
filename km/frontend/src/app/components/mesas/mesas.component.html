@@ -1,6 +1,6 @@
 <div class="d-flex flex-wrap justify-content-center">
   <div *ngFor="let mesa of listaMesas">
-    <button class="btnCard" routerLink="/mesas/{{mesa.id}}" (click)="newComanda(mesa)">
+    <button class="btnCard" (click)="newComanda(mesa)">
       <div class="card">
         <div class="card-details">
           <div *ngIf="mesa.id <= 10;then nMesa else ventana "></div>

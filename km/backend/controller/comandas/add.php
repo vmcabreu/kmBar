@@ -27,7 +27,7 @@ if (isset($headers['Authorization'])) {
                 http_response_code(200);
             } else {
                 http_response_code(404);
-                echo json_encode(array("message" => "No se encontró la comida con la categoría  " . $categoria));
+                echo json_encode(array("message" => "No se encontró la comida con la categoría  " . $listaPedido));
             }
         }else if (isset($_GET['type']) && $_GET['type'] == "details") {
             $postdata = file_get_contents("php://input");
@@ -38,7 +38,7 @@ if (isset($headers['Authorization'])) {
                 http_response_code(200);
             } else {
                 http_response_code(404);
-                echo json_encode(array("message" => "Error  " . $categoria));
+                echo json_encode(array("message" => "Error  " . $listaPedido));
             }
         }
     }

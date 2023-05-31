@@ -10,11 +10,11 @@ import { MesasService } from 'src/app/service/mesas.service';
   styleUrls: ['./mesas.component.css']
 })
 export class MesasComponent {
-  constructor(private mesaService: MesasService,private comandaService: ComandasService ,private router: Router) { }
+  constructor(private mesaService: MesasService, private comandaService: ComandasService, private router: Router) { }
 
   listaMesas: Mesas[] = [];
 
-  ngOnInit(){
+  ngOnInit() {
     this.getListaMesas();
   }
 
@@ -26,26 +26,31 @@ export class MesasComponent {
     );
   }
 
-  newComanda(mesa:Mesas){
+  newComanda(mesa: Mesas) {
     if (mesa.comanda_id == null) {
       this.comandaService.nuevaComanda().subscribe({
-        next:()=>{
+        next: () => {
           this.comandaService.getComandas().subscribe({
-            next:(comanda:any[])=>{
+            next: (comanda: any[]) => {
               mesa.comanda_id = comanda[0].id
-              this.mesaService.addComandaToMesa(mesa).subscribe()
+              this.mesaService.addComandaToMesa(mesa).subscribe({
+                next: () => {
+                  this.router.navigateByUrl("/mesas/" + mesa.id)
+                }
+              });
             }
           })
         }
       })
+    } else {
+      this.router.navigateByUrl("/mesas/" + mesa.id)
     }
-
   }
 
-  checkVentana(number:number){
+  checkVentana(number: number) {
     if (number == 11) {
       return "Izquierda"
-    }else{
+    } else {
       return "Derecha"
     }
   }
