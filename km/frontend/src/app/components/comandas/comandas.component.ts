@@ -88,6 +88,7 @@ export class ComandasComponent {
 
   addProducto(){
     if (this.selectedType == "Comida") {
+
       let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,this.selectedAlimento.id,0,this.cantidadComida)
       console.log(newProducto);
       this.comandaService.addComandaDetalle(newProducto).subscribe({
@@ -105,6 +106,10 @@ export class ComandasComponent {
         }
       })
     }
+  }
+
+  eliminarProducto(){
+    
   }
 
   terminarComanda() {

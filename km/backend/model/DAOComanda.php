@@ -18,7 +18,7 @@ class DAOComanda
 
     public static function realizarResumenComandaComida(int $id)
     {
-        $stmt = BaseDAO::consulta("SELECT comida.nombre, comida.precio, comanda_detalle.cantidad, comida.precio * comanda_detalle.cantidad AS total
+        $stmt = BaseDAO::consulta("SELECT comanda_detalle.id,comida.nombre, comida.precio, comanda_detalle.cantidad, comida.precio * comanda_detalle.cantidad AS total
             FROM comanda_detalle
             LEFT JOIN comida ON comanda_detalle.comida_id = comida.id
             WHERE comanda_detalle.comanda_id = $id AND comanda_detalle.comanda_id IS NOT NULL;

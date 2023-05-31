@@ -27,16 +27,19 @@ export class MesasComponent {
   }
 
   newComanda(mesa:Mesas){
-    this.comandaService.nuevaComanda().subscribe({
-      next:()=>{
-        this.comandaService.getComandas().subscribe({
-          next:(comanda:any[])=>{
-            mesa.comanda_id = comanda[0].id
-            this.mesaService.addComandaToMesa(mesa).subscribe()
-          }
-        })
-      }
-    })
+    if (mesa.comanda_id == null) {
+      this.comandaService.nuevaComanda().subscribe({
+        next:()=>{
+          this.comandaService.getComandas().subscribe({
+            next:(comanda:any[])=>{
+              mesa.comanda_id = comanda[0].id
+              this.mesaService.addComandaToMesa(mesa).subscribe()
+            }
+          })
+        }
+      })
+    }
+
   }
 
   checkVentana(number:number){
