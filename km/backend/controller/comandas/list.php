@@ -27,7 +27,7 @@ if (isset($headers['Authorization'])) {
                 echo json_encode($listaPedido, JSON_UNESCAPED_UNICODE);
             } else {
                 http_response_code(404);
-                echo json_encode(array("message" => "No se encontró la comida con la categoría  " . $categoria));
+                echo json_encode(array("message" => "No se encontró la comida con la categoría  " . $listaPedido));
             }
         } else {
             $listaMesas = DAOComanda::listaComanda();
