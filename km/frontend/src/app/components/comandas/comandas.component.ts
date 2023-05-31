@@ -73,7 +73,6 @@ export class ComandasComponent {
     this.comandaService.getResumenComandaBebida(id).subscribe(
       (data: Comanda[]) => {
         this.listaComandaBebida = data;
-        console.log(data);
       }
     );
   }
@@ -108,8 +107,56 @@ export class ComandasComponent {
     }
   }
 
-  eliminarProducto(){
-    
+  eliminarProducto(id:number){
+    Swal.fire({
+      title: '¿Quieres eliminar este producto de la comanda?',
+      icon: 'warning',
+      timerProgressBar: true,
+      background: '#151515',
+      color: '#fff',
+      confirmButtonText: 'Terminar',
+      confirmButtonColor: '#47ff6f',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#ff4747'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.comandaService.eliminarProductoLista(id).subscribe({
+          next: () => {
+            this.eliminarProductoComanda(id);
+            this.getListaComandaResumenComida(this.idComanda)
+          },
+          error: () => {
+          }
+        })
+      }
+    });
+  }
+
+  eliminarProductoBebida(id:number){
+    Swal.fire({
+      title: '¿Quieres eliminar este producto de la comanda?',
+      icon: 'warning',
+      timerProgressBar: true,
+      background: '#151515',
+      color: '#fff',
+      confirmButtonText: 'Terminar',
+      confirmButtonColor: '#47ff6f',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#ff4747'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.comandaService.eliminarProductoLista(id).subscribe({
+          next: () => {
+            this.getListaComandaResumenBebida(this.idComanda)
+            this.eliminarProductoComanda(id);
+          },
+          error: () => {
+          }
+        })
+      }
+    });
   }
 
   terminarComanda() {
@@ -157,6 +204,20 @@ export class ComandasComponent {
 
   firstToUpperCase(str: string) {
     return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
+  }
+
+  eliminarProductoComanda(id:number) {
+    const index = this.listaComanda.findIndex(producto => producto.id === id);
+    if (index !== -1) {
+      this.listaComanda.splice(index, 1);
+    }
+  }
+
+  eliminarProductoComandaBebida(id:number) {
+    const index = this.listaComandaBebida.findIndex(producto => producto.id === id);
+    if (index !== -1) {
+      this.listaComandaBebida.splice(index, 1);
+    }
   }
 
 }

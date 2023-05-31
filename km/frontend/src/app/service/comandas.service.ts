@@ -33,6 +33,10 @@ export class ComandasService {
     return this.http.post(this.url + 'comandas/add.php?type=done', { id: mesaid, total: total });
   }
 
+  eliminarProductoLista(id:number): Observable<any>{
+    return this.http.delete(`${this.url}comandas/deleteDetails.php?id=${id}`)
+  }
+
   addComandaDetalle(comanda: ComandaDetalles): Observable<any> {
     return this.http.post(this.url + 'comandas/add.php?type=details', comanda);
   }
