@@ -18,7 +18,7 @@ if (isset($headers['Authorization'])) {
                 echo json_encode(array("message" => "Mesa ".$id ));
             } else {
                 http_response_code(404);
-                echo json_encode(array("message" => "No se encontró la mesa"));
+                echo json_encode(array("message" => "No se encontró la mesa ".$id));
             }
         
     }
