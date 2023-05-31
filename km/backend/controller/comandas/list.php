@@ -9,9 +9,19 @@ if (isset($headers['Authorization'])) {
         exit(json_encode(array("message" => "Acceso denegado")));
     }
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        if (isset($_GET['id'])) {
+        if (isset($_GET['id'])  && (isset($_GET['listType']) && $_GET['listType'] == "food")) {
             $id = intval($_GET['id']);
             $listaPedido = DAOComanda::realizarResumenComandaComida($id);
+            if ($listaPedido != null) {
+                http_response_code(200);
+                echo json_encode($listaPedido, JSON_UNESCAPED_UNICODE);
+            } else {
+                http_response_code(404);
+                echo json_encode(array("message" => "No se encontró la comida con la categoría  " . $categoria));
+            }
+        } else if (isset($_GET['id'])  && (isset($_GET['listType']) && $_GET['listType'] == "drink")) {
+            $id = intval($_GET['id']);
+            $listaPedido = DAOComanda::realizarResumenComandaBebidas($id);
             if ($listaPedido != null) {
                 http_response_code(200);
                 echo json_encode($listaPedido, JSON_UNESCAPED_UNICODE);

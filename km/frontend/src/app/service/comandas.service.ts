@@ -16,8 +16,12 @@ export class ComandasService {
     return this.http.get<Comanda[]>(this.url + 'comandas/list.php');
   }
 
-  getResumenComanda(id: number): Observable<Comanda[]> {
-    return this.http.get<Comanda[]>(this.url + 'comandas/list.php?id=' + id);
+  getResumenComandaComida(id: number): Observable<Comanda[]> {
+    return this.http.get<Comanda[]>(this.url + 'comandas/list.php?id=' + id + '&listType=food');
+  }
+
+  getResumenComandaBebida(id: number): Observable<Comanda[]> {
+    return this.http.get<Comanda[]>(this.url + 'comandas/list.php?id=' + id + '&listType=drink');
   }
 
   nuevaComanda(): Observable<any> {

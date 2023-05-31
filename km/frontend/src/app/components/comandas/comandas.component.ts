@@ -14,18 +14,29 @@ export class ComandasComponent {
   constructor(private comandaService: ComandasService,private mesaService: MesasService ,private router: Router) { }
 
   listaComanda: Comanda[] = [];
+  listaComandaBebida: Comanda[] = [];
   mesaid: number = parseInt(this.router.url.split("/").splice(1, 2)[1]);
   mesa: string = this.firstToUpperCase(this.router.url.split("/").splice(1, 2)[0].slice(0, -1)) + " " + this.router.url.split("/").splice(1, 2)[1]
 
   ngOnInit() {
-    this.getListaComandaResumen();
+    this.getListaComandaResumenComida();
+    this.getListaComandaResumenBebida();
   }
 
-  getListaComandaResumen(): void {
+  getListaComandaResumenComida(): void {
     let ruta: string[] = this.router.url.split("/").splice(1, 2);
-    this.comandaService.getResumenComanda(parseInt(ruta[1])).subscribe(
+    this.comandaService.getResumenComandaComida(parseInt(ruta[1])).subscribe(
       (data: Comanda[]) => {
         this.listaComanda = data;
+      }
+    );
+  }
+
+  getListaComandaResumenBebida(): void {
+    let ruta: string[] = this.router.url.split("/").splice(1, 2);
+    this.comandaService.getResumenComandaBebida(parseInt(ruta[1])).subscribe(
+      (data: Comanda[]) => {
+        this.listaComandaBebida = data;
       }
     );
   }
