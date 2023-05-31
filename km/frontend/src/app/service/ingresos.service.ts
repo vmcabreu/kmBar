@@ -11,7 +11,7 @@ export class IngresosService {
   constructor(private http: HttpClient) { }
   url: String = "https://kmbar.me/api/controller/";
 
-  getMesas(): Observable<Ingresos[]> {
+  getIngresos(): Observable<Ingresos[]> {
     return this.http.get<Ingresos[]>(this.url + 'ingresos/list.php');
   }
 }

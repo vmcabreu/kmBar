@@ -13,7 +13,19 @@ export class IngresosComponent {
 
   constructor(private router:Router,private ingresosService:IngresosService){}
 
+  ngOnInit(){
+    this.getIngresos()
+  }
+
   getIngresos(){
-    this.ingresosService
+    this.ingresosService.getIngresos().subscribe({
+      next:(result: Ingresos[])=>{
+        this.listaIngresos = result;
+      },
+      error:(err:any)=>{
+        console.log(err);
+
+      }
+    })
   }
 }

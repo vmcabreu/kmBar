@@ -15,7 +15,7 @@ if (isset($headers['Authorization'])) {
             echo json_encode($listaIngresos, JSON_UNESCAPED_UNICODE);
         } else {
             http_response_code(404);
-            echo json_encode(array("message" => "No se encontró el usuario con ID " . $id));
+            echo json_encode(array("message" => "No se encontrarón ingresos"));
         }
     }
 }
