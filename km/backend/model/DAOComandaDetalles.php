@@ -18,7 +18,7 @@ class DAOComandaDetalles
 
     public static function aniadirDetalleComanda(ComandaDetalles $comanda): int
     {
-        $sql = "INSERT INTO comanda_detalle VALUES (null,'$comanda->comanda_id','$comanda->comida_id','$comanda->cantidad')";
+        $sql = "INSERT INTO comanda_detalle VALUES (null,'$comanda->comanda_id','$comanda->comida_id','$comanda->bebida_id','$comanda->cantidad')";
         return BaseDAO::consulta($sql);
     }
 
