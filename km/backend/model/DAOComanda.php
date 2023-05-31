@@ -6,7 +6,7 @@ class DAOComanda
 {
     public static function listaComanda(int $limit = 10000): array
     {
-        $stmt = BaseDAO::consulta("SELECT * FROM comanda LIMIT $limit");
+        $stmt = BaseDAO::consulta("SELECT * FROM comanda ORDER BY id DESC");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

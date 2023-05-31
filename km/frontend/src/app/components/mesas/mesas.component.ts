@@ -29,13 +29,12 @@ export class MesasComponent {
   newComanda(mesa:Mesas){
     this.comandaService.nuevaComanda().subscribe({
       next:()=>{
-        this.mesaService.getComandaFromMesa(mesa.id).subscribe({
+        this.comandaService.getComandas().subscribe({
           next:(comanda:any)=>{
             mesa.comanda_id = comanda.comanda_id
             this.mesaService.addComandaToMesa(mesa).subscribe()
           }
         })
-
       }
     })
   }
