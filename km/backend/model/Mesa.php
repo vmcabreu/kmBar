@@ -25,7 +25,7 @@ class Mesa
         return $this->atributos[$atributo];
     }
 
-    public static function crearComida(array $datos): Mesa
+    public static function crearMesa(array $datos): Mesa
     {
 
         $comida = new Mesa();

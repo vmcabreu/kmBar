@@ -15,8 +15,12 @@ export class MesasService {
     return this.http.get<Mesas[]>(this.url + 'mesas/list.php');
   }
 
-  getComandaFromMesa(){
-    return this.http.get<Mesas[]>(this.url + 'mesas/comanda.php');
+  getComandaFromMesa(id: number) {
+    return this.http.get<Mesas[]>(this.url + 'mesas/comanda.php?id=' + id);
+  }
+
+  addComandaToMesa(mesa: Mesas): Observable<any> {
+    return this.http.put(this.url + 'mesas/newComanda.php', mesa);
   }
 
   limpiarMesa(id: number): Observable<any> {
