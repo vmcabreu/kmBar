@@ -19,7 +19,7 @@ if (isset($headers['Authorization'])) {
             }
         } else if (isset($_GET['type']) && $_GET['type'] == "done") {
             $postdata = file_get_contents("php://input");
-            $request = json_decode($postdata);
+            $request = json_decode($postdata,true);
             $mesaid = intval($request['id']);
             $total = doubleval($request['total']);
             $listaPedido = DAOComanda::finalizarComanda($mesaid,$total);
