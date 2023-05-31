@@ -45,8 +45,45 @@
       </tr>
     </table>
   </div>
-  <div class="opcionesComanda">
-    <button class="addProducto"> Añadir Producto </button>
+  <div class="opcionesComanda d-flex flex-column gap-4">
+    <button class="addProducto" data-bs-toggle="modal" data-bs-target="#exampleModal"> Añadir Producto </button>
     <button class="addProducto" (click)="terminarComanda()"> Terminar Comanda </button>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Añade un producto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="addProducto()">
+          <label for="tipo">Selecciona el tipo producto</label>
+          <select class="form-select" name="tipo" [(ngModel)]="selectedType">
+            <option value="Comida">Comida</option>
+            <option value="Bebida">Bebida</option>
+          </select>
+          <div *ngIf="selectedType == 'Comida';then comidas else bebidas"></div>
+          <ng-template #comidas>
+            <label for="comida">Selecciona la comida</label>
+            <select class="form-select" name="comida" [(ngModel)]="selectedAlimento">
+              <option *ngFor="let alimento of listaAlimentos" [ngValue]="alimento">{{alimento.nombre}}</option>
+            </select>
+          </ng-template>
+          <ng-template #bebidas>
+            <label for="bebida">Selecciona la bebida</label>
+            <select class="form-select" name="bebida" [(ngModel)]="selectedBebida">
+              <option *ngFor="let bebidas of listaBebidas" [ngValue]="bebidas">{{bebidas.nombre}}</option>
+            </select>
+          </ng-template>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

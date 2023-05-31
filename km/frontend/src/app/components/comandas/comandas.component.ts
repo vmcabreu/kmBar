@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Bebida } from 'src/app/model/bebida.model';
 import { Comanda } from 'src/app/model/comanda.model';
+import { ComandaDetalles } from 'src/app/model/comandadetalles.model';
+import { Comida } from 'src/app/model/comida.model';
+import { BebidasService } from 'src/app/service/bebidas.service';
 import { ComandasService } from 'src/app/service/comandas.service';
+import { ComidaService } from 'src/app/service/comida.service';
 import { MesasService } from 'src/app/service/mesas.service';
 import Swal from 'sweetalert2';
 
@@ -11,27 +16,51 @@ import Swal from 'sweetalert2';
   styleUrls: ['./comandas.component.css']
 })
 export class ComandasComponent {
-  constructor(private comandaService: ComandasService,private mesaService: MesasService ,private router: Router) { }
+  constructor(private comandaService: ComandasService, private mesaService: MesasService,private bebidasService:BebidasService,private comidaService:ComidaService ,private router: Router) { }
 
+  idComanda: number;
   listaComanda: Comanda[] = [];
   listaComandaBebida: Comanda[] = [];
+  listaAlimentos: Comida[] = [];
+  listaBebidas: Bebida[]=[];
+  selectedType:string="";
+  cantidad:number = 0;
+  selectedAlimento: Comida = new Comida();
+  selectedBebida: Bebida = new Bebida();
   mesaid: number = parseInt(this.router.url.split("/").splice(1, 2)[1]);
   mesa: string = this.firstToUpperCase(this.router.url.split("/").splice(1, 2)[0].slice(0, -1)) + " " + this.router.url.split("/").splice(1, 2)[1]
 
   ngOnInit() {
     this.mesaService.getComandaFromMesa(this.mesaid).subscribe({
-      next:(result:any)=>{
-        if (result.comanda_id!=null) {
+      next: (result: any) => {
+        if (result.comanda_id != null) {
+          this.idComanda = result.comanda_id;
           this.getListaComandaResumenBebida(result.comanda_id);
           this.getListaComandaResumenComida(result.comanda_id);
+          this.getBebidas();
+          this.getComidas();
         }
-
       }
     })
-
   }
 
-  getListaComandaResumenComida(id:number): void {
+  getBebidas(){
+    this.bebidasService.getBebidas().subscribe({
+      next:(bebidas:Bebida[])=>{
+        this.listaBebidas = bebidas;
+      }
+    })
+  }
+
+  getComidas(){
+    this.comidaService.getComida().subscribe({
+      next:(comida:Comida[])=>{
+        this.listaAlimentos = comida;
+      }
+    })
+  }
+
+  getListaComandaResumenComida(id: number): void {
     this.comandaService.getResumenComandaComida(id).subscribe(
       (data: Comanda[]) => {
         this.listaComanda = data;
@@ -39,25 +68,33 @@ export class ComandasComponent {
     );
   }
 
-  getListaComandaResumenBebida(id:number): void {
+  getListaComandaResumenBebida(id: number): void {
     this.comandaService.getResumenComandaBebida(id).subscribe(
       (data: Comanda[]) => {
         this.listaComandaBebida = data;
         console.log(data);
-
       }
     );
   }
 
-  getTotal(){
-    let total:number = 0;
+  getTotal() {
+    let total: number = 0;
     this.listaComanda.forEach(element => {
       total += element.total
     });
     return total;
   }
 
-  terminarComanda(){
+  addProducto(){
+    if (this.selectedType == "Comida") {
+      console.log(this.selectedAlimento);
+      let newProducto: ComandaDetalles = new ComandaDetalles(null,this.idComanda,this.selectedAlimento.id,null,this.cantidad)
+    }else{
+      console.log(this.selectedBebida);
+    }
+  }
+
+  terminarComanda() {
     Swal.fire({
       title: '¿Quieres terminar la comanda?',
       icon: 'info',
@@ -71,8 +108,8 @@ export class ComandasComponent {
       cancelButtonColor: '#ff4747'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.comandaService.finalizarComanda(this.mesaid,this.getTotal()).subscribe({
-          next:()=>{
+        this.comandaService.finalizarComanda(this.mesaid, this.getTotal()).subscribe({
+          next: () => {
             Swal.fire({
               title: '¡Comanda terminada!',
               icon: 'success',
@@ -84,8 +121,15 @@ export class ComandasComponent {
               this.router.navigateByUrl("/mesas");
             });
           },
-          error:()=>{
-
+          error: () => {
+            Swal.fire({
+              title: '¡Tienes que añadir productos para terminar la comanda!',
+              icon: 'error',
+              timerProgressBar: true,
+              background: '#151515',
+              color: '#fff',
+              confirmButtonColor: '#47ff6f',
+            });
           }
         })
       }

@@ -58,6 +58,43 @@
   grid-area: opcionesComanda;
 }
 
+
+/* Media queries para dispositivos de pantalla pequeña */
+@media (max-width: 768px) {
+  .containerGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "title"
+      "comanda"
+      "opcionesComanda";
+  }
+}
+
+/* Media queries para dispositivos de pantalla mediana */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .containerGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "title title"
+      "comanda opcionesComanda";
+  }
+}
+
+/* Media queries para dispositivos de pantalla grande */
+@media (min-width: 1025px) {
+  /* Mantener las propiedades originales del grid */
+  .containerGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.4fr 2.3fr 0.3fr;
+    grid-template-areas:
+      "title title title"
+      "comanda comanda opcionesComanda"
+      ". . .";
+  }
+}
+
 .btnDelete {
   background-color: transparent;
   position: relative;

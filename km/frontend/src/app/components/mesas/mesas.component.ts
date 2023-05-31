@@ -30,8 +30,8 @@ export class MesasComponent {
     this.comandaService.nuevaComanda().subscribe({
       next:()=>{
         this.comandaService.getComandas().subscribe({
-          next:(comanda:any)=>{
-            mesa.comanda_id = comanda.comanda_id
+          next:(comanda:any[])=>{
+            mesa.comanda_id = comanda[0].id
             this.mesaService.addComandaToMesa(mesa).subscribe()
           }
         })
