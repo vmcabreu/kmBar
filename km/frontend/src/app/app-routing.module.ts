@@ -7,6 +7,7 @@ import { MesasComponent } from './components/mesas/mesas.component';
 import { ComandasComponent } from './components/comandas/comandas.component';
 import { AuthGuard } from './service/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { IngresosComponent } from './components/ingresos/ingresos.component';
 
 const routes: Routes = [
   {path: "", component: MenuComponent,canActivate: [AuthGuard]},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: "mesas", component: MesasComponent,canActivate: [AuthGuard]},
   {path: "comida", component: ComidaComponent,canActivate: [AuthGuard]},
   {path: "bebidas", component: BebidasComponent,canActivate: [AuthGuard]},
+  {path: "ingresos", component: IngresosComponent,canActivate: [AuthGuard]},
   {path: "mesas/:id", component: ComandasComponent,canActivate: [AuthGuard]},
   {path: "comida/:categoria", component: ComidaComponent,canActivate: [AuthGuard]},
   {path: "bebidas/:categoria", component: BebidasComponent,canActivate: [AuthGuard]}

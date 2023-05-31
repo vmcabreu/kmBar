@@ -12,6 +12,8 @@ require_once PROJECT_ROOT_PATH . "/model/ComandaDetalles.php";
 require_once PROJECT_ROOT_PATH . "/model/Recibo.php";
 require_once PROJECT_ROOT_PATH . "/model/Mesa.php";
 require_once PROJECT_ROOT_PATH . "/model/Usuario.php";
+require_once PROJECT_ROOT_PATH . "/model/Ingresos.php";
+require_once PROJECT_ROOT_PATH . "/model/DAOIngresos.php";
 require_once PROJECT_ROOT_PATH . "/model/DAOUsuario.php";
 require_once PROJECT_ROOT_PATH . "/model/DAOBebida.php";
 require_once PROJECT_ROOT_PATH . "/model/DAOComida.php";

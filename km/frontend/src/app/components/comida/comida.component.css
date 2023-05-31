@@ -1,0 +1,21 @@
+
+.indexBtn{
+  background-color: #5c4f451f;
+  border: 3px  solid #5e3500;
+  border-radius: 8px;
+  fill: #5e3500;
+}
+.iconMenu{
+  width: 32px;
+  height: 32px;
+  fill: #5e3500;
+}
+.indexBtn:hover{
+  background-color: rgb(92, 79, 69);
+  border: 3px  solid #bead9f;
+  border-radius: 8px;
+  fill: #bead9f;
+}
+.indexBtn:hover .iconMenu {
+  fill: #bead9f;
+}

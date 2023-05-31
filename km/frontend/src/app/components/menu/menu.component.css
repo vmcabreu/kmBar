@@ -3,6 +3,13 @@
   background-color: transparent;
 }
 
+@media (min-width: 1025px){
+  .modal-content,.modal-dialog{
+    width: 75vw !important;
+    max-width: none !important;
+  }
+}
+
 .card {
   width: 190px;
   height: 254px;

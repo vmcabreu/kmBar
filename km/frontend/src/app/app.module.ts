@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PrecioPipe } from './pipes/precio.pipe';
 import { AuthInterceptor } from './service/auth.interceptor';
+import { IngresosComponent } from './components/ingresos/ingresos.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './service/auth.interceptor';
     ComandasComponent,
     LoginComponent,
     PrecioPipe,
+    IngresosComponent,
   ],
   imports: [
     BrowserModule,
