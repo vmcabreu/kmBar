@@ -82,6 +82,9 @@ export class ComandasComponent {
     this.listaComanda.forEach(element => {
       total += element.total
     });
+    this.listaComandaBebida.forEach(element => {
+      total += element.total
+    });
     return total;
   }
 
