@@ -13,6 +13,14 @@ CREATE TABLE IF NOT EXISTS usuarios (
   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS bebidas (
+  id INT auto_increment,
+  nombre varchar(255) NOT NULL,
+  categoria varchar(120) NOT NULL,
+  precio DOUBLE NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS comida (
   id INT auto_increment,
   nombre varchar(255) NOT NULL,
@@ -36,6 +44,7 @@ CREATE TABLE IF NOT EXISTS comanda_detalle (
   cantidad INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (comanda_id) REFERENCES comanda(id),
+  FOREIGN KEY (comida_id) REFERENCES comida(id),
   FOREIGN KEY (bebida_id) REFERENCES bebidas(id)
 );
 
