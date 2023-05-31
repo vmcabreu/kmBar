@@ -38,16 +38,16 @@ class DAOComanda
         $sql = "UPDATE comanda
         SET total = (
             SELECT SUM(
-                (COALESCE(cd.comida_cantidad, 0) * COALESCE(c.precio, 0)) +
-                (COALESCE(cd.bebidas_cantidad, 0) * COALESCE(b.precio, 0))
+                (COALESCE(cd.cantidad, 0) * COALESCE(c.precio, 0)) +
+                (COALESCE(cd.cantidad, 0) * COALESCE(b.precio, 0))
             )
             FROM comanda_detalle cd
             LEFT JOIN comida c ON cd.comida_id = c.id
-            LEFT JOIN bebidas b ON cd.bebidas_id = b.id
+            LEFT JOIN bebidas b ON cd.bebida_id = b.id
             JOIN mesas m ON cd.comanda_id = m.comanda_id
             WHERE m.id = $mesaid
         )
-        WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);        
+        WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);
         ";
         return BaseDAO::consulta($sql);
     }
