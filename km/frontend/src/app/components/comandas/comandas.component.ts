@@ -16,16 +16,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./comandas.component.css']
 })
 export class ComandasComponent {
-  constructor(private comandaService: ComandasService, private mesaService: MesasService,private bebidasService:BebidasService,private comidaService:ComidaService ,private router: Router) { }
+  constructor(private comandaService: ComandasService, private mesaService: MesasService, private bebidasService: BebidasService, private comidaService: ComidaService, private router: Router) { }
 
   idComanda: number;
   listaComanda: Comanda[] = [];
   listaComandaBebida: Comanda[] = [];
   listaAlimentos: Comida[] = [];
-  listaBebidas: Bebida[]=[];
-  selectedType:string="";
-  cantidadComida:number = 0;
-  cantidadBebida:number = 0;
+  listaBebidas: Bebida[] = [];
+  selectedType: string = "";
+  cantidadComida: number = 0;
+  cantidadBebida: number = 0;
   selectedAlimento: Comida = new Comida();
   selectedBebida: Bebida = new Bebida();
   mesaid: number = parseInt(this.router.url.split("/").splice(1, 2)[1]);
@@ -45,17 +45,17 @@ export class ComandasComponent {
     })
   }
 
-  getBebidas(){
+  getBebidas() {
     this.bebidasService.getBebidas().subscribe({
-      next:(bebidas:Bebida[])=>{
+      next: (bebidas: Bebida[]) => {
         this.listaBebidas = bebidas;
       }
     })
   }
 
-  getComidas(){
+  getComidas() {
     this.comidaService.getComida().subscribe({
-      next:(comida:Comida[])=>{
+      next: (comida: Comida[]) => {
         this.listaAlimentos = comida;
       }
     })
@@ -85,29 +85,31 @@ export class ComandasComponent {
     return total;
   }
 
-  addProducto(){
+  addProducto() {
     if (this.selectedType == "Comida") {
-
-      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,this.selectedAlimento.id,0,this.cantidadComida)
-      console.log(newProducto);
+      if (this.cantidadComida == 0) {
+        this.cantidadComida = 1
+      }
+      let newProducto: ComandaDetalles = new ComandaDetalles(0, this.idComanda, this.selectedAlimento.id, 0, this.cantidadComida)
       this.comandaService.addComandaDetalle(newProducto).subscribe({
-        next:()=>{
+        next: () => {
           this.getListaComandaResumenComida(this.idComanda)
         }
       })
-    }else{
-      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,0,this.selectedBebida.id,this.cantidadBebida)
-      console.log(newProducto);
-
+    } else {
+      if (this.cantidadBebida == 0) {
+        this.cantidadBebida = 1
+      }
+      let newProducto: ComandaDetalles = new ComandaDetalles(0, this.idComanda, 0, this.selectedBebida.id, this.cantidadBebida)
       this.comandaService.addComandaDetalle(newProducto).subscribe({
-        next:()=>{
+        next: () => {
           this.getListaComandaResumenBebida(this.idComanda)
         }
       })
     }
   }
 
-  eliminarProducto(id:number){
+  eliminarProducto(id: number) {
     Swal.fire({
       title: '¿Quieres eliminar este producto de la comanda?',
       icon: 'warning',
@@ -133,7 +135,7 @@ export class ComandasComponent {
     });
   }
 
-  eliminarProductoBebida(id:number){
+  eliminarProductoBebida(id: number) {
     Swal.fire({
       title: '¿Quieres eliminar este producto de la comanda?',
       icon: 'warning',
@@ -206,14 +208,14 @@ export class ComandasComponent {
     return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
   }
 
-  eliminarProductoComanda(id:number) {
+  eliminarProductoComanda(id: number) {
     const index = this.listaComanda.findIndex(producto => producto.id === id);
     if (index !== -1) {
       this.listaComanda.splice(index, 1);
     }
   }
 
-  eliminarProductoComandaBebida(id:number) {
+  eliminarProductoComandaBebida(id: number) {
     const index = this.listaComandaBebida.findIndex(producto => producto.id === id);
     if (index !== -1) {
       this.listaComandaBebida.splice(index, 1);
