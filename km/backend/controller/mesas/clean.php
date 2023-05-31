@@ -9,16 +9,17 @@ if (isset($headers['Authorization'])) {
         exit(json_encode(array("message" => "Acceso denegado")));
     }
     if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-        if (isset($_POST['mesaid'])) {
-            $id = intval($_POST['mesaid']);
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+            $id = intval($data['mesaid']);
             $limpiarMesa = DAOMesa::limpiarMesa($id);
-            if ($limpiarMesa != null) {
+            if ($limpiarMesa > 0) {
                 http_response_code(200);
                 echo json_encode(array("message" => "Mesa ".$id ));
             } else {
                 http_response_code(404);
                 echo json_encode(array("message" => "No se encontró la mesa"));
             }
-        }
+        
     }
 }
