@@ -34,7 +34,7 @@ class DAOMesa
 
     public static function limpiarMesa(int $id): int
     {
-        $sql = "UPDATE mesas SET comanda_id = NULL WHERE id = $id";
+        $sql = "UPDATE mesas SET comanda_id = 0 WHERE id = $id";
         return BaseDAO::consulta($sql);
     }
 }

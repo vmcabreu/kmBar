@@ -185,7 +185,11 @@ export class ComandasComponent {
               color: '#fff',
               confirmButtonColor: '#47ff6f',
             }).then(() => {
-              this.router.navigateByUrl("/mesas");
+              this.mesaService.limpiarMesa(this.mesaid).subscribe({
+                next:()=>{
+                  this.router.navigateByUrl("/mesas");
+                }
+              })
             });
           },
           error: () => {

@@ -24,7 +24,7 @@ export class MesasService {
   }
 
   limpiarMesa(id: number): Observable<any> {
-    return this.http.put(this.url + 'mesas/list.php', { mesaid: id });
+    return this.http.put(this.url + 'mesas/clean.php', { mesaid: id });
   }
 
 }
