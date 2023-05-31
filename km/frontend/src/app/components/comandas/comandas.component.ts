@@ -39,29 +39,39 @@ export class ComandasComponent {
   }
 
   terminarComanda(){
-    this.comandaService.finalizarComanda(this.mesaid,this.getTotal()).subscribe({
-      next:()=>{
-        Swal.fire({
-          title: '¡Comanda terinada!',
-          icon: 'success',
-          timerProgressBar: true,
-          background: '#151515',
-          color: '#fff'
-        }).then((result) => {
-          this.mesaService.limpiarMesa(this.mesaid).subscribe({
-            next:()=>{
+    Swal.fire({
+      title: '¿Quieres terminar la comanda?',
+      icon: 'info',
+      timerProgressBar: true,
+      background: '#151515',
+      color: '#fff',
+      confirmButtonText: 'Terminar',
+      confirmButtonColor: '#47ff6f',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#ff4747'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.comandaService.finalizarComanda(this.mesaid,this.getTotal()).subscribe({
+          next:()=>{
+            Swal.fire({
+              title: '¡Comanda terminada!',
+              icon: 'success',
+              timerProgressBar: true,
+              background: '#151515',
+              color: '#fff',
+              confirmButtonColor: '#47ff6f',
+            }).then(() => {
               this.router.navigateByUrl("/mesas");
-            },
-            error:()=>{
+            });
+          },
+          error:()=>{
 
-            }
-          })
-        });
-      },
-      error:()=>{
-
+          }
+        })
       }
-    })
+    });
+
   }
 
   firstToUpperCase(str: string) {

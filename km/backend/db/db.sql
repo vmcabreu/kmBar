@@ -142,3 +142,13 @@ INSERT INTO mesas (id,comanda_id) VALUES
 (10,NULL),
 (11,NULL),
 (12,NULL);
+
+DELIMITER //
+CREATE TRIGGER update_mesas_trigger AFTER UPDATE ON comanda
+FOR EACH ROW
+BEGIN
+    IF NEW.total <> 0 THEN
+        UPDATE mesas SET comanda_id = NULL WHERE comanda_id = NEW.id;
+    END IF;
+END //
+DELIMITER ;
