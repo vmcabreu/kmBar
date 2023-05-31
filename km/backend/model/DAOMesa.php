@@ -25,6 +25,12 @@ class DAOMesa
         return BaseDAO::consulta($sql);
     }
 
+    public static function getComandaFromMesa(int $id): array
+    {
+        $stmt = BaseDAO::consulta("SELECT comanda_id FROM mesas WHERE id=$id");
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
     public static function limpiarMesa(int $id): int
     {

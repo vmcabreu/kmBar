@@ -19,24 +19,25 @@ export class ComandasComponent {
   mesa: string = this.firstToUpperCase(this.router.url.split("/").splice(1, 2)[0].slice(0, -1)) + " " + this.router.url.split("/").splice(1, 2)[1]
 
   ngOnInit() {
+    
     this.getListaComandaResumenComida();
     this.getListaComandaResumenBebida();
   }
 
-  getListaComandaResumenComida(): void {
-    let ruta: string[] = this.router.url.split("/").splice(1, 2);
-    this.comandaService.getResumenComandaComida(parseInt(ruta[1])).subscribe(
+  getListaComandaResumenComida(id:number): void {
+    this.comandaService.getResumenComandaComida(id).subscribe(
       (data: Comanda[]) => {
         this.listaComanda = data;
       }
     );
   }
 
-  getListaComandaResumenBebida(): void {
-    let ruta: string[] = this.router.url.split("/").splice(1, 2);
-    this.comandaService.getResumenComandaBebida(parseInt(ruta[1])).subscribe(
+  getListaComandaResumenBebida(id:number): void {
+    this.comandaService.getResumenComandaBebida(id).subscribe(
       (data: Comanda[]) => {
         this.listaComandaBebida = data;
+        console.log(data);
+
       }
     );
   }

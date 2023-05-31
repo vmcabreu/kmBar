@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS comanda (
 
 CREATE TABLE IF NOT EXISTS comanda_detalle (
   id INT auto_increment,
-  comanda_id INT NOT NULL,
+  comanda_id INT,
   comida_id INT,
   bebida_id INT,
   cantidad INT NOT NULL,
