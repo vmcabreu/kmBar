@@ -20,7 +20,7 @@ if (isset($headers['Authorization'])) {
                 echo json_encode(array("message" => "Mesa ".$id));
             } else {
                 http_response_code(404);
-                echo json_encode(array("message" => "No se encontró la mesa ".$id));
+                echo json_encode(array("message" => "No se encontró la mesa ".$id." Razon: ".$limpiarMesa));
             }
         } else {
             http_response_code(400);
