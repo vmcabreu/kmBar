@@ -16,15 +16,26 @@ class DAOComanda
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function realizarResumenComanda(int $id)
+    public static function realizarResumenComandaComida(int $id)
     {
         $stmt = BaseDAO::consulta("SELECT comida.nombre, comida.precio, comanda_detalle.cantidad, comida.precio * comanda_detalle.cantidad AS total
-        FROM comanda_detalle
-        JOIN comida ON comanda_detalle.comida_id = comida.id
-        WHERE comanda_detalle.comanda_id = $id;
-        ");
+            FROM comanda_detalle
+            LEFT JOIN comida ON comanda_detalle.comida_id = comida.id
+            WHERE comanda_detalle.comanda_id = $id AND comanda_detalle.comanda_id IS NOT NULL;
+            ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public static function realizarResumenComandaBebidas(int $id)
+    {
+        $stmt = BaseDAO::consulta("SELECT bebidas.nombre, bebidas.precio, comanda_detalle.cantidad, bebidas.precio * comanda_detalle.cantidad AS total
+            FROM comanda_detalle
+            LEFT JOIN bebidas ON comanda_detalle.bebida_id = bebidas.id
+            WHERE comanda_detalle.comanda_id = $id AND comanda_detalle.comanda_id IS NOT NULL;
+            ");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
     public static function nuevaComanda(): int
     {

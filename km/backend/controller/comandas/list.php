@@ -11,7 +11,7 @@ if (isset($headers['Authorization'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['id'])) {
             $id = intval($_GET['id']);
-            $listaPedido = DAOComanda::realizarResumenComanda($id);
+            $listaPedido = DAOComanda::realizarResumenComandaComida($id);
             if ($listaPedido != null) {
                 http_response_code(200);
                 echo json_encode($listaPedido, JSON_UNESCAPED_UNICODE);
