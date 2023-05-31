@@ -87,14 +87,17 @@ export class ComandasComponent {
 
   addProducto(){
     if (this.selectedType == "Comida") {
-      let newProducto: ComandaDetalles = new ComandaDetalles(null,this.idComanda,this.selectedAlimento.id,null,this.cantidad)
+      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,this.selectedAlimento.id,0,this.cantidad)
+      console.log(newProducto);
       this.comandaService.addComandaDetalle(newProducto).subscribe({
         next:()=>{
           this.getListaComandaResumenComida(this.idComanda)
         }
       })
     }else{
-      let newProducto: ComandaDetalles = new ComandaDetalles(null,this.idComanda,null,this.selectedBebida.id,this.cantidad)
+      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,0,this.selectedBebida.id,this.cantidad)
+      console.log(newProducto);
+
       this.comandaService.addComandaDetalle(newProducto).subscribe({
         next:()=>{
           this.getListaComandaResumenBebida(this.idComanda)

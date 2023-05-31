@@ -60,23 +60,27 @@
       </div>
       <div class="modal-body">
         <form (submit)="addProducto()">
-          <label for="tipo">Selecciona el tipo producto</label>
+          <label for="tipo" class="form-label">Selecciona el tipo producto</label>
           <select class="form-select" name="tipo" [(ngModel)]="selectedType">
             <option value="Comida">Comida</option>
             <option value="Bebida">Bebida</option>
           </select>
           <div *ngIf="selectedType == 'Comida';then comidas else bebidas"></div>
           <ng-template #comidas>
-            <label for="comida">Selecciona la comida</label>
+            <label for="comida" class="form-label">Selecciona la comida</label>
             <select class="form-select" name="comida" [(ngModel)]="selectedAlimento">
               <option *ngFor="let alimento of listaAlimentos" [ngValue]="alimento">{{alimento.nombre}}</option>
             </select>
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" [(ngModel)]="cantidad">
           </ng-template>
           <ng-template #bebidas>
-            <label for="bebida">Selecciona la bebida</label>
+            <label for="bebida" class="form-label">Selecciona la bebida</label>
             <select class="form-select" name="bebida" [(ngModel)]="selectedBebida">
               <option *ngFor="let bebidas of listaBebidas" [ngValue]="bebidas">{{bebidas.nombre}}</option>
             </select>
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" [(ngModel)]="cantidad">
           </ng-template>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
