@@ -17,9 +17,10 @@ if (isset($headers['Authorization'])) {
                 http_response_code(404);
                 echo json_encode(array("message" => "No se puede añadir una nueva comanda"));
             }
-        } else if ((isset($_GET['type']) && $_GET['type'] == "done") && isset($_GET['id'])) {
-            $mesaid = intval($_GET['id']);
-            $listaPedido = DAOComanda::finalizarComanda($mesaid);
+        } else if (isset($_GET['type']) && $_GET['type'] == "done") {
+            $mesaid = intval($_POST['id']);
+            $total = doubleval($_POST['total']);
+            $listaPedido = DAOComanda::finalizarComanda($mesaid,$total);
             if ($listaPedido != null) {
                 http_response_code(200);
                 echo json_encode($listaPedido, JSON_UNESCAPED_UNICODE);

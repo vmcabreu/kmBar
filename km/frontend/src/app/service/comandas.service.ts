@@ -24,7 +24,7 @@ export class ComandasService {
     return this.http.post(this.url + 'comandas/add.php?type=new', null);
   }
 
-  finalizarComanda(mesaid: number): Observable<any> {
-    return this.http.post(this.url + 'comandas/add.php?type=done&id=' + mesaid, null);
+  finalizarComanda(mesaid: number, total: number): Observable<any> {
+    return this.http.post(this.url + 'comandas/add.php?type=done', { id: mesaid, total: total });
   }
 }

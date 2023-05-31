@@ -30,8 +30,16 @@ export class ComandasComponent {
     );
   }
 
+  getTotal(){
+    let total:number = 0;
+    this.listaComanda.forEach(element => {
+      total += element.total
+    });
+    return total;
+  }
+
   terminarComanda(){
-    this.comandaService.finalizarComanda(this.mesaid).subscribe({
+    this.comandaService.finalizarComanda(this.mesaid,this.getTotal()).subscribe({
       next:()=>{
         Swal.fire({
           title: '¡Comanda terinada!',
