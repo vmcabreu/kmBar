@@ -19,11 +19,18 @@ class DAOComandaDetalles
     public static function aniadirDetalleComanda(ComandaDetalles $comanda): int
     {
         if ($comanda->comida_id == 0) {
-            $comanda->comida_id = null;
-        }else if ($comanda->bebida_id == 0){
-            $comanda->bebida_id = null;
+            $comida_id = null;
+        }else{
+            $comida_id = $comanda->comida_id;
         }
-        $sql = "INSERT INTO comanda_detalle VALUES (null,'$comanda->comanda_id','$comanda->comida_id','$comanda->bebida_id','$comanda->cantidad')";
+        
+        if ($comanda->bebida_id == 0){
+            $bebida_id = null;
+        }else{
+            $bebida_id = $comanda->bebida_id;
+        }
+
+        $sql = "INSERT INTO comanda_detalle VALUES (null,'$comanda->comanda_id','$comida_id','$bebida_id','$comanda->cantidad')";
         return BaseDAO::consulta($sql);
     }
 
