@@ -24,7 +24,8 @@ export class ComandasComponent {
   listaAlimentos: Comida[] = [];
   listaBebidas: Bebida[]=[];
   selectedType:string="";
-  cantidad:number = 0;
+  cantidadComida:number = 0;
+  cantidadBebida:number = 0;
   selectedAlimento: Comida = new Comida();
   selectedBebida: Bebida = new Bebida();
   mesaid: number = parseInt(this.router.url.split("/").splice(1, 2)[1]);
@@ -87,7 +88,7 @@ export class ComandasComponent {
 
   addProducto(){
     if (this.selectedType == "Comida") {
-      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,this.selectedAlimento.id,0,this.cantidad)
+      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,this.selectedAlimento.id,0,this.cantidadComida)
       console.log(newProducto);
       this.comandaService.addComandaDetalle(newProducto).subscribe({
         next:()=>{
@@ -95,7 +96,7 @@ export class ComandasComponent {
         }
       })
     }else{
-      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,0,this.selectedBebida.id,this.cantidad)
+      let newProducto: ComandaDetalles = new ComandaDetalles(0,this.idComanda,0,this.selectedBebida.id,this.cantidadBebida)
       console.log(newProducto);
 
       this.comandaService.addComandaDetalle(newProducto).subscribe({

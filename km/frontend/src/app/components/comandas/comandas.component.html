@@ -72,7 +72,7 @@
               <option *ngFor="let alimento of listaAlimentos" [ngValue]="alimento">{{alimento.nombre}}</option>
             </select>
             <label for="cantidad" class="form-label">Cantidad</label>
-            <input type="number" class="form-control" [(ngModel)]="cantidad">
+            <input type="number" class="form-control" [(ngModel)]="cantidadComida">
           </ng-template>
           <ng-template #bebidas>
             <label for="bebida" class="form-label">Selecciona la bebida</label>
@@ -80,7 +80,7 @@
               <option *ngFor="let bebidas of listaBebidas" [ngValue]="bebidas">{{bebidas.nombre}}</option>
             </select>
             <label for="cantidad" class="form-label">Cantidad</label>
-            <input type="number" class="form-control" [(ngModel)]="cantidad">
+            <input type="number" class="form-control" [(ngModel)]="cantidadBebida">
           </ng-template>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
