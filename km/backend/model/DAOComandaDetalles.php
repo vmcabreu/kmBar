@@ -20,8 +20,8 @@ class DAOComandaDetalles
     {
         $comida_id = ($comanda->comida_id == 0) ? null : $comanda->comida_id;
         $bebida_id = ($comanda->bebida_id == 0) ? null : $comanda->bebida_id;
-        
-        $sql = "INSERT INTO comanda_detalle VALUES (null, '$comanda->comanda_id', $comida_id, $bebida_id, '$comanda->cantidad')";
+
+        $sql = "INSERT INTO comanda_detalle (comanda_id, comida_id, bebida_id, cantidad) VALUES('$comanda->comanda_id', $comida_id, $bebida_id, '$comanda->cantidad')";
         return BaseDAO::consulta($sql);
     }
     
