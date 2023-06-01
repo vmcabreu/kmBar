@@ -58,10 +58,11 @@ CREATE TABLE IF NOT EXISTS mesas (
 
 CREATE TABLE IF NOT EXISTS ingresos (
   id INT auto_increment,
-  fecha DATE NOT NULL,
+  fecha DATE NOT NULL UNIQUE,
   ingreso DOUBLE NOT NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB;
+
 
 INSERT INTO bebidas (nombre, categoria, precio) VALUES
 ('Café solo', 'Café', 1.00),
