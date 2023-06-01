@@ -14,4 +14,8 @@ export class IngresosService {
   getIngresos(): Observable<Ingresos[]> {
     return this.http.get<Ingresos[]>(this.url + 'ingresos/list.php');
   }
+
+  terminarJornada(total:number): Observable<any> {
+    return this.http.post<any>(this.url + 'ingresos/add.php',{total:total});
+  }
 }
