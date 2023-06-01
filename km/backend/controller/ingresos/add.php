@@ -29,7 +29,7 @@ if (isset($headers['Authorization'])) {
             http_response_code(200);
         } else {
             http_response_code(404);
-            echo json_encode(array("message" => "Los ingresos no se han podido realizar"));
+            echo json_encode(array("message" => "La modificacion de ingresos no se ha podido realizar"));
         }
     }
 }
