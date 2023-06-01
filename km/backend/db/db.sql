@@ -122,17 +122,8 @@ INSERT INTO comida (nombre, categoria, precio) VALUES
 ('Canaria (120 gr de carne, queso canario, chorizo de teror, papas, huevo y mojo rojo)', 'Hamburguesas', 5.50),
 ('KM (120 gr de carne, queso de cabra, cebolla caramelizada, rúcula y mostaza dulce)', 'Hamburguesas', 6.50);
 
-
-
--- Insertar una nueva comanda
-INSERT INTO comanda (id,fecha, total) VALUES (1,'2023-05-02', 150.5);
-
--- Insertar detalles de la comanda
-INSERT INTO comanda_detalle (comanda_id, comida_id, cantidad) VALUES (1, 1, 2);
-INSERT INTO comanda_detalle (comanda_id, comida_id, cantidad) VALUES (1, 2, 1);
-
 INSERT INTO mesas (id,comanda_id) VALUES 
-(1,1),
+(1,NULL),
 (2,NULL),
 (3,NULL),
 (4,NULL),
