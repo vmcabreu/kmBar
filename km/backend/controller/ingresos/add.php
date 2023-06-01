@@ -25,7 +25,7 @@ if (isset($headers['Authorization'])) {
         $request = json_decode($postdata, true);
         $ingresos = doubleval($request['total']);
         $updateJornada = DAOIngresos::modificarJornada($ingresos);
-        if ($updateJornada == 0) {
+        if ($updateJornada != 0) {
             http_response_code(200);
         } else {
             http_response_code(404);
