@@ -122,6 +122,8 @@ INSERT INTO comida (nombre, categoria, precio) VALUES
 ('Canaria (120 gr de carne, queso canario, chorizo de teror, papas, huevo y mojo rojo)', 'Hamburguesas', 5.50),
 ('KM (120 gr de carne, queso de cabra, cebolla caramelizada, rúcula y mostaza dulce)', 'Hamburguesas', 6.50);
 
+
+
 INSERT INTO mesas (id,comanda_id) VALUES 
 (1,NULL),
 (2,NULL),
