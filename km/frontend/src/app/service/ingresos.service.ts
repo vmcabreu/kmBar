@@ -18,4 +18,8 @@ export class IngresosService {
   terminarJornada(total:number): Observable<any> {
     return this.http.post<any>(this.url + 'ingresos/add.php',{total:total});
   }
+
+  updateJornada(total:number): Observable<any> {
+    return this.http.put<any>(this.url + 'ingresos/add.php',{total:total});
+  }
 }

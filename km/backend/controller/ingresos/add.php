@@ -17,13 +17,19 @@ if (isset($headers['Authorization'])) {
         if ($jornadaEnd != null) {
             http_response_code(200);
         } else {
-            $updateJornada = DAOIngresos::modificarJornada($ingresos);
-            if ($updateJornada != null) {
-                http_response_code(200);
-            } else {
-                http_response_code(404);
-                echo json_encode(array("message" => "Los ingresos no se han podido realizar"));
-            }
+            http_response_code(404);
+            echo json_encode(array("message" => "Los ingresos no se han podido realizar"));
+        }
+    }else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata, true);
+        $ingresos = doubleval($request['total']);
+        $updateJornada = DAOIngresos::modificarJornada($ingresos);
+        if ($updateJornada != null) {
+            http_response_code(200);
+        } else {
+            http_response_code(404);
+            echo json_encode(array("message" => "Los ingresos no se han podido realizar"));
         }
     }
 }

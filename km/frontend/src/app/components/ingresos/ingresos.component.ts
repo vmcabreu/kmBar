@@ -36,7 +36,7 @@ export class IngresosComponent {
       next: (comandas: any[]) => {
         let total = 0;
         let fechaActual = this.getFechaActual();
-        console.log(comandas);
+
         comandas.forEach(element => {
           if (element.fecha == fechaActual) {
             total += element.total
@@ -45,8 +45,22 @@ export class IngresosComponent {
         this.ingresosService.terminarJornada(total).subscribe({
           next:()=>{
             this.getIngresos()
+          },
+          error:()=>{
+            this.ingresosService.updateJornada(total).subscribe({
+              next:()=>{
+                this.getIngresos()
+              },
+              error:(err:any)=>{
+                console.log("");
+
+              }
+            })
           }
         })
+      },
+      error:()=>{
+
       }
     })
   }
