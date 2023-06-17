@@ -44,10 +44,10 @@
         <h1 class="modal-title fs-5" id="bebidaModalLabel">Selecciona una opción</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body d-flex flex-column gap-4">
         <div>
         <h3>Lista</h3>
-        <button class="btn btn-primary" data-bs-dismiss="modal" routerLink="/bebidas">Ver lista de todas las bebidas</button>
+        <button class="btn btn-primary w-100" data-bs-dismiss="modal" routerLink="/bebidas">Ver lista de todas las bebidas</button>
         </div>
         <div>
           <h3>Por categorías</h3>
@@ -68,11 +68,11 @@
               </div>
             </div>
           </button>
-          <button class="btnCard" routerLink="/bebidas/bebidas_sin_alcohol" data-bs-dismiss="modal">
+          <button class="btnCard" routerLink="/bebidas/té" data-bs-dismiss="modal">
             <div class="card">
               <div class="card-details">
-                <p class="text-title">Bebidas sin alcohol</p>
-                <p class="text-body">Consulta todas las bebidas sin alcohol</p>
+                <p class="text-title">Té</p>
+                <p class="text-body">Consulta todos los té en la carta</p>
               </div>
             </div>
           </button>
@@ -106,10 +106,10 @@
         <h1 class="modal-title fs-5" id="comidaModalLabel">Selecciona una opción</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body d-flex flex-column gap-4">
         <div>
         <h3>Lista</h3>
-        <button class="btn btn-primary" data-bs-dismiss="modal" routerLink="/comida">Ver lista de todas las comidas</button>
+        <button class="btn btn-primary w-100" data-bs-dismiss="modal" routerLink="/comida">Ver lista de todas las comidas</button>
         </div>
         <div>
           <h3>Por categorías</h3>
@@ -129,6 +129,7 @@
               </div>
             </div>
           </button>
+          <!--
           <button class="btnCard" routerLink="/comida/hamburguesas" data-bs-dismiss="modal">
             <div class="card">
               <div class="card-details">
@@ -137,6 +138,7 @@
               </div>
             </div>
           </button>
+        -->
         </div>
       </div>
     </div>

@@ -7,6 +7,21 @@
   <h1>Ingresos</h1>
 </div>
 <div>
+  <div>
+    <h3>Datos de la empresa:</h3>
+  <table class="table table-light table-striped-columns table-hover">
+    <tr>
+      <th>Nombre</th>
+      <th></th>
+      <th>Dirección</th>
+    </tr>
+    <tr>
+      <td>Marketing Imebajal S.L.</td>
+      <td>B10839595</td>
+      <td>Avenida Manuel Hermoso Rojas No 4 Torre I, Oficina 1,38003, Santa Cruz de Tenerife</td>
+    </tr>
+  </table>
+</div>
   <div class="p-3">
     <button class="btn btn-primary" (click)="endJornada()">Terminar Jornada</button>
   </div>
@@ -17,7 +32,7 @@
     </tr>
     <tr  *ngFor="let ingreso of listaIngresos">
       <td>{{ingreso.fecha}}</td>
-      <td>{{ingreso.ingreso}}€</td>
+      <td>{{ingreso.ingreso.toFixed(2)}}€</td>
     </tr>
   </table>
 </div>
