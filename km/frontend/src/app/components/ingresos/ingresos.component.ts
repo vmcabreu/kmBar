@@ -26,7 +26,6 @@ export class IngresosComponent {
       },
       error: (err: any) => {
         console.log(err);
-
       }
     })
   }

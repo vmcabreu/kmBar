@@ -63,7 +63,6 @@ CREATE TABLE IF NOT EXISTS ingresos (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-
 INSERT INTO bebidas (nombre, categoria, precio) VALUES
 ('Café solo', 'Café', 1.00),
 ('Cortado Natural', 'Café', 1.20),
