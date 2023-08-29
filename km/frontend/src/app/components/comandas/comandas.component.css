@@ -126,6 +126,11 @@ table{
   }
 }
 
+.card:active {
+  border-color: #008bf8;
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+ }
+
 .btnDelete {
   background-color: transparent;
   position: relative;
