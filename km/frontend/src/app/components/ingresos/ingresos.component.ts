@@ -30,6 +30,14 @@ export class IngresosComponent {
     })
   }
 
+  getIngresosByFechayPayment(){
+    this.listaIngresos.forEach(element => {
+      //this.comandaService.getResumenTotalTipoDePago(element.fecha,)
+      console.log(element.fecha);
+      
+    });
+  }
+
   endJornada() {
     this.comandaService.getComandas().subscribe({
       next: (comandas: any[]) => {

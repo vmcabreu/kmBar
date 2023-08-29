@@ -28,11 +28,15 @@
   <table class="table table-striped">
     <tr>
       <th>Fecha</th>
-      <th>Ingresos</th>
+      <th>Ingresos Totales</th>
+      <th>Ingreso Tarjeta</th>
+      <th>Ingreso Efectivo</th>
     </tr>
     <tr  *ngFor="let ingreso of listaIngresos">
       <td>{{ingreso.fecha}}</td>
       <td>{{ingreso.ingreso.toFixed(2)}}€</td>
+      <td>{{getIngresosByFechayPayment()}}</td>
+      <td>Aqui</td>
     </tr>
   </table>
 </div>

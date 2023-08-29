@@ -25,6 +25,10 @@ export class ComandasService {
     return this.http.get<Comanda[]>(this.url + 'comandas/list.php?id=' + id + '&listType=drink');
   }
 
+  getResumenTotalTipoDePago(fecha: string,tipo_pago: string): Observable<any> {
+    return this.http.get<any>(this.url + 'comandas/list.php?fecha=' + fecha + '&payment='+ tipo_pago);
+  }
+
   nuevaComanda(): Observable<any> {
     return this.http.post(this.url + 'comandas/add.php?type=new', null);
   }
