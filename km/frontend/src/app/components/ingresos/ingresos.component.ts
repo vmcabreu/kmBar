@@ -61,7 +61,6 @@ export class IngresosComponent {
           }else{
             this.listaIngresosEfectivo.push({ fecha: this.element?.fecha, total: value });
           }
-          
         },
         error(err) {
           console.error(err);
