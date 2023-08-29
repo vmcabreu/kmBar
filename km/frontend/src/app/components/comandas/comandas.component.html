@@ -83,7 +83,7 @@
           <div *ngIf="selectedType != ''">
             <div *ngIf="selectedType == 'Comida';then comidas else bebidas"></div>
             <ng-template #comidas>
-              <label for="comida" class="form-label">Selecciona la comida</label>
+              <label for="comida" class="form-label">Selecciona la categoria</label>
               <select class="form-select" name="comida" [(ngModel)]="selectedAlimento">
                 <option *ngFor="let alimento of listaAlimentos" [ngValue]="alimento">{{alimento.nombre}}</option>
               </select>

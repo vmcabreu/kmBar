@@ -12,21 +12,22 @@ import { IngresosService } from 'src/app/service/ingresos.service';
 })
 export class IngresosComponent {
   listaIngresos: Ingresos[] = [];
-  listaIngresosTarjeta = [];
-  listaIngresosEfectivo = [];
+  listaIngresosTarjeta: any[] = [];
+  listaIngresosEfectivo: any[] = [];
 
   constructor(private router: Router, private ingresosService: IngresosService, private comandaService: ComandasService) { }
 
   ngOnInit() {
-    this.getIngresos()
+    this.getIngresos();
+
   }
 
   getIngresos() {
     this.ingresosService.getIngresos().subscribe({
       next: (result: Ingresos[]) => {
         this.listaIngresos = result;
-        this.getIngresosByFechaEfectivo(result);
-        this.getIngresosByFechaTarjeta(result);
+        this.getIngresosByFechaEfectivo(this.listaIngresos);
+        this.getIngresosByFechaTarjeta(this.listaIngresos);
       },
       error: (err: any) => {
         console.log(err);
@@ -35,14 +36,11 @@ export class IngresosComponent {
   }
 
   getIngresosByFechaEfectivo(listaIngresos: Ingresos[]) {
+    let listaIngresosEfectivo: any[] = [];
     listaIngresos.forEach(element => {
       this.comandaService.getResumenTotalTipoDePago(element?.fecha, 'Efectivo').subscribe({
         next(value) {
-          if (value == undefined) {
-            this.listaIngresosEfectivo.push({ fecha: this.element?.fecha, total: 0 });
-          }else{
-            this.listaIngresosEfectivo.push({ fecha: this.element?.fecha, total: value });
-          }
+          listaIngresosEfectivo.push({ fecha: element?.fecha, total: value?.total_sum });
         },
         error(err) {
           console.error(err);
@@ -50,24 +48,22 @@ export class IngresosComponent {
       })
 
     });
+    this.listaIngresosEfectivo = listaIngresosEfectivo
   }
 
   getIngresosByFechaTarjeta(listaIngresos: Ingresos[]) {
+    let listaIngresosTarjeta: any[] = [];
     listaIngresos.forEach(element => {
       this.comandaService.getResumenTotalTipoDePago(element?.fecha, 'Tarjeta').subscribe({
-        next(value) {
-          if (value == undefined) {
-            this.listaIngresosEfectivo.push({ fecha: this.element?.fecha, total: 0 });
-          }else{
-            this.listaIngresosEfectivo.push({ fecha: this.element?.fecha, total: value });
-          }
+        next(value:any) {
+          listaIngresosTarjeta.push({ fecha: element?.fecha, total: value?.total_sum });
         },
         error(err) {
           console.error(err);
         },
       })
-
     });
+    this.listaIngresosTarjeta = listaIngresosTarjeta;
   }
 
   endJornada() {
@@ -87,16 +83,15 @@ export class IngresosComponent {
             },
             error: (err: any) => {
               console.log(err);
+              this.ingresosService.updateJornada(total).subscribe({
+                next: () => {
+                  this.getIngresos()
+                },
+                error: (err: any) => {
+                  console.log(err);
 
-            }
-          })
-        } else {
-          this.ingresosService.updateJornada(total).subscribe({
-            next: () => {
-              this.getIngresos()
-            },
-            error: (err: any) => {
-              console.log(err);
+                }
+              })
 
             }
           })
@@ -120,12 +115,12 @@ export class IngresosComponent {
   }
   getTotalByFechaEfectivo(fecha) {
     const ingreso = this.listaIngresosEfectivo.find(item => item.fecha === fecha);
-    return ingreso ? ingreso.total : 0; 
+    return ingreso ? ingreso.total : 0;
   }
 
   getTotalByFechaTarjeta(fecha) {
     const ingreso = this.listaIngresosTarjeta.find(item => item.fecha === fecha);
-    return ingreso ? ingreso.total : 0; 
+    return ingreso ? ingreso.total : 0;
   }
 
   checkFecha(): any {

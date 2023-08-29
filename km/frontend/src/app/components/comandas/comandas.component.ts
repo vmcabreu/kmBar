@@ -24,6 +24,7 @@ export class ComandasComponent {
   listaAlimentos: Comida[] = [];
   listaBebidas: Bebida[] = [];
   selectedType: string = "";
+  selectedCategoria: string = "";
   cantidadComida: number = 0;
   cantidadBebida: number = 0;
   selectedAlimento: Comida = new Comida();
