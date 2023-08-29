@@ -123,7 +123,7 @@
           <h2 class="form-label">Selecciona el tipo de pago</h2>
           <div class="d-flex justify-content-center align-items-center ">
             <button type="button" class="btnCard" (click)="addTipoPago('Efectivo')">
-              <div class="card">
+              <div class="card" [ngClass]="{'selectedTipoPago': tipoPago === 'Efectivo' }">
                 <div class="card-details">
                   <img class="typePayment" src="assets/img/efectivo.png" alt="" srcset="">
                   <p>
@@ -133,8 +133,8 @@
                 </div>
               </div>
             </button>
-            <button type="button" class="btnCard" (click)="addTipoPago('Tarjeta')">
-              <div class="card">
+            <button type="button" class="btnCard" (click)="addTipoPago('Tarjeta')" >
+              <div class="card" [ngClass]="{'selectedTipoPago': tipoPago === 'Tarjeta' }">
                 <div class="card-details">
                   <img class="typePayment" src="assets/img/tarjeta.png" alt="" srcset="">
                   <p>

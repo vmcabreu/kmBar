@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.app.KMBar',
+  appId: 'com.kmbar.app',
   appName: 'KMBar',
-  webDir: 'dist/frontend',
+  webDir: 'dist',
   bundledWebRuntime: false
 };
 

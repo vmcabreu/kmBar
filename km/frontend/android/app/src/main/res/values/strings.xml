@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">KMBar</string>
     <string name="title_activity_main">KMBar</string>
-    <string name="package_name">com.app.KMBar</string>
-    <string name="custom_url_scheme">com.app.KMBar</string>
+    <string name="package_name">com.kmbar.app</string>
+    <string name="custom_url_scheme">com.kmbar.app</string>
 </resources>
