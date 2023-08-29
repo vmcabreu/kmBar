@@ -35,8 +35,8 @@
     <tr  *ngFor="let ingreso of listaIngresos">
       <td>{{ingreso.fecha}}</td>
       <td>{{ingreso.ingreso.toFixed(2)}}€</td>
-      <td>{{getIngresosByFechayPayment()}}</td>
-      <td>Aqui</td>
+      <td>{{getTotalByFechaTarjeta(ingreso.fecha).toFixed(2)}}€</td>
+      <td>{{getTotalByFechaEfectivo(ingreso.fecha).toFixed(2)}}€</td>
     </tr>
   </table>
 </div>

@@ -19,3 +19,7 @@
 .indexBtn:hover .iconMenu {
   fill: #bead9f;
 }
+
+td{
+  text-align: center !important;
+}
