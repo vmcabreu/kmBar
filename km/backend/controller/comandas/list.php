@@ -27,9 +27,20 @@ if (isset($headers['Authorization'])) {
                 echo json_encode($listaPedido, JSON_UNESCAPED_UNICODE);
             } else {
                 http_response_code(404);
-                echo json_encode(array("message" => "No se encontró la comida con la categoría " . $listaPedido['categoria']));
+                echo json_encode(array("message" => "No se encontró la comida con la categoría "));
             }
-        } else {
+        } else if (isset($_GET['fecha'])  && isset($_GET['payment'])) {
+            $fecha = $_GET['fecha'];
+            $tipo_pago = $_GET['payment'];
+            $total = DAOComanda::listaTotalComandaByPago($fecha,$tipo_pago);
+            if ($total != null) {
+                http_response_code(200);
+                echo json_encode($total, JSON_UNESCAPED_UNICODE);
+            } else {
+                http_response_code(404);
+                echo json_encode(array("message" => "Error en DB"));
+            }
+        }else {
             $listaMesas = DAOComanda::listaComanda();
             if ($listaMesas != null) {
                 http_response_code(200);

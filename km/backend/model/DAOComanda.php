@@ -16,6 +16,15 @@ class DAOComanda
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    
+    public static function listaTotalComandaByPago(string $fecha,string $tipo_pago): array
+    {
+        $stmt = BaseDAO::consulta("SELECT SUM(total) AS total_sum FROM comanda
+        WHERE tipo_pago = '$tipo_pago' AND fecha = '$fecha';
+        ");
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function realizarResumenComandaComida(int $id)
     {
         $stmt = BaseDAO::consulta("SELECT comanda_detalle.id,comida.nombre, comida.precio, comanda_detalle.cantidad, comida.precio * comanda_detalle.cantidad AS total
