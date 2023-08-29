@@ -48,7 +48,7 @@ class DAOComanda
     {
         $sql = "UPDATE comanda
                 SET total = $total,
-                tipo_pago = $tipo_pago
+                tipo_pago = '$tipo_pago'
                 WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);
         
                 UPDATE mesas
