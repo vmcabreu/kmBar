@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS comanda (
   id INT auto_increment,
   fecha DATE NOT NULL,
   total DOUBLE NOT NULL,
+  tipo_pago varchar(150) NOT NULL,
   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 

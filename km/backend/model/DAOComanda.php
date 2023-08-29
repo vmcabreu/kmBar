@@ -25,7 +25,7 @@ class DAOComanda
             ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public static function realizarResumenComandaBebidas(int $id)
     {
         $stmt = BaseDAO::consulta("SELECT comanda_detalle.id,bebidas.nombre, bebidas.precio, comanda_detalle.cantidad, bebidas.precio * comanda_detalle.cantidad AS total
@@ -35,21 +35,22 @@ class DAOComanda
             ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
 
     public static function nuevaComanda(): int
     {
         $fechaActual = date('Y-m-d');
-        $sql = "INSERT INTO comanda VALUES (null,'$fechaActual','0')";
+        $sql = "INSERT INTO comanda VALUES (null,'$fechaActual','0','none')";
         return BaseDAO::consulta($sql);
     }
 
-    public static function finalizarComanda(int $mesaid, float $total)
+    public static function finalizarComanda(int $mesaid,string $tipo_pago ,float $total)
     {
         $sql = "UPDATE comanda
-                SET total = $total
+                SET total = $total,
+                tipo_pago = $tipo_pago
                 WHERE id = (SELECT comanda_id FROM mesas WHERE id = $mesaid);
-                
+        
                 UPDATE mesas
                 SET comanda_id = NULL
                 WHERE id = $mesaid AND comanda_id IN (SELECT id FROM (SELECT id FROM mesas) AS temp) AND $total <> 0;
@@ -64,7 +65,8 @@ class DAOComanda
 
     public static function modificarComanda(Comanda $comanda): int
     {
-        $sql = "UPDATE comanda SET fecha = '$comanda->fecha',total = '$comanda->total' WHERE id = $comanda->id";
+        $sql = "UPDATE comanda SET fecha = '$comanda->fecha',total = '$comanda->total',
+        tipo_pago = $comanda->tipo_pago WHERE id = $comanda->id";
         return BaseDAO::consulta($sql);
     }
 

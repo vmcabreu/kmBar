@@ -2,7 +2,8 @@
   <div class="title d-flex gap-4">
     <button routerLink="/mesas" class="indexBtn">
       <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-90deg-left iconMenu" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+        <path fill-rule="evenodd"
+          d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z" />
       </svg>
     </button>
     <h1>{{mesa}}</h1>
@@ -59,7 +60,7 @@
   </div>
   <div class="opcionesComanda d-flex flex-column gap-4">
     <button class="addProducto" data-bs-toggle="modal" data-bs-target="#exampleModal"> Añadir Producto </button>
-    <button class="addProducto" (click)="terminarComanda()"> Terminar Comanda </button>
+    <button class="addProducto" data-bs-toggle="modal" data-bs-target="#finalizarComanda"> Terminar Comanda </button>
   </div>
 </div>
 
@@ -73,34 +74,80 @@
       <div class="modal-body">
         <form (submit)="addProducto()">
           <label for="tipo" class="form-label">Selecciona el tipo producto</label>
-          <select class="form-select" name="tipo" [(ngModel)]="selectedType" aria-placeholder="Selecciona el tipo de producto">
+          <select class="form-select" name="tipo" [(ngModel)]="selectedType"
+            aria-placeholder="Selecciona el tipo de producto">
             <option value=""></option>
             <option value="Comida">Comida</option>
             <option value="Bebida">Bebida</option>
           </select>
           <div *ngIf="selectedType != ''">
-          <div *ngIf="selectedType == 'Comida';then comidas else bebidas"></div>
-          <ng-template #comidas>
-            <label for="comida" class="form-label">Selecciona la comida</label>
-            <select class="form-select" name="comida" [(ngModel)]="selectedAlimento">
-              <option *ngFor="let alimento of listaAlimentos" [ngValue]="alimento">{{alimento.nombre}}</option>
-            </select>
-            <label for="numberComida" class="form-label">Cantidad</label>
-            <input type="number" class="form-control" [(ngModel)]="cantidadComida" name="numberComida" min="1">
-          </ng-template>
-          <ng-template #bebidas>
-            <label for="bebida" class="form-label">Selecciona la bebida</label>
-            <select class="form-select" name="bebida" [(ngModel)]="selectedBebida">
-              <option *ngFor="let bebidas of listaBebidas" [ngValue]="bebidas">{{bebidas.nombre}}</option>
-            </select>
-            <label for="numberBebida" class="form-label">Cantidad</label>
-            <input type="number" class="form-control" name="numberBebida" [(ngModel)]="cantidadBebida" min="1">
-          </ng-template>
-        </div>
+            <div *ngIf="selectedType == 'Comida';then comidas else bebidas"></div>
+            <ng-template #comidas>
+              <label for="comida" class="form-label">Selecciona la comida</label>
+              <select class="form-select" name="comida" [(ngModel)]="selectedAlimento">
+                <option *ngFor="let alimento of listaAlimentos" [ngValue]="alimento">{{alimento.nombre}}</option>
+              </select>
+              <label for="numberComida" class="form-label">Cantidad</label>
+              <input type="number" class="form-control" [(ngModel)]="cantidadComida" name="numberComida" min="1">
+            </ng-template>
+            <ng-template #bebidas>
+              <label for="bebida" class="form-label">Selecciona la bebida</label>
+              <select class="form-select" name="bebida" [(ngModel)]="selectedBebida">
+                <option *ngFor="let bebidas of listaBebidas" [ngValue]="bebidas">{{bebidas.nombre}}</option>
+              </select>
+              <label for="numberBebida" class="form-label">Cantidad</label>
+              <input type="number" class="form-control" name="numberBebida" [(ngModel)]="cantidadBebida" min="1">
+            </ng-template>
+          </div>
           <div class="d-flex justify-content-between p-2">
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Añadir</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-        </div>
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Añadir</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="finalizarComanda" tabindex="-1" aria-labelledby="finalizarComandaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="finalizarComandaLabel">Terminar Comanda</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="terminarComanda()">
+          <h2 class="form-label">Selecciona el tipo de pago</h2>
+          <div>
+            <button class="btnCard" (click)="addTipoPago('Efectivo')">
+              <div class="card">
+                <div class="card-details">
+                  <img src="assets/img/efectivo.png" alt="" srcset="">
+                  <p>
+                    Efectivo
+                  </p>
+
+                </div>
+              </div>
+            </button>
+            <button class="btnCard" (click)="addTipoPago('Tarjeta')">
+              <div class="card">
+                <div class="card-details">
+                  <img src="assets/img/tarjeta.png" alt="" srcset="">
+                  <p>
+                    Tarjeta
+                  </p>
+                </div>
+              </div>
+            </button>
+          </div>
+          <div class="d-flex justify-content-between p-2">
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Terminar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
         </form>
       </div>
     </div>

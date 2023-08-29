@@ -29,8 +29,8 @@ export class ComandasService {
     return this.http.post(this.url + 'comandas/add.php?type=new', null);
   }
 
-  finalizarComanda(mesaid: number, total: number): Observable<any> {
-    return this.http.post(this.url + 'comandas/add.php?type=done', { id: mesaid, total: total });
+  finalizarComanda(mesaid: number, total: number, tipo_pago: string): Observable<any> {
+    return this.http.post(this.url + 'comandas/add.php?type=done', { id: mesaid, total: total, tipo_pago:tipo_pago });
   }
 
   eliminarProductoLista(id:number): Observable<any>{

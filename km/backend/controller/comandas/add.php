@@ -22,7 +22,8 @@ if (isset($headers['Authorization'])) {
             $request = json_decode($postdata,true);
             $mesaid = intval($request['id']);
             $total = doubleval($request['total']);
-            $listaPedido = DAOComanda::finalizarComanda($mesaid,$total);
+            $tipo_pago = $request['tipo_pago'];
+            $listaPedido = DAOComanda::finalizarComanda($mesaid,$tipo_pago,$total);
             if ($listaPedido != null) {
                 http_response_code(200);
             } else {

@@ -30,6 +30,7 @@ export class ComandasComponent {
   selectedBebida: Bebida = new Bebida();
   mesaid: number = parseInt(this.router.url.split("/").splice(1, 2)[1]);
   mesa: string = this.firstToUpperCase(this.router.url.split("/").splice(1, 2)[0].slice(0, -1)) + " " + this.router.url.split("/").splice(1, 2)[1]
+  tipoPago: string = "";
 
   ngOnInit() {
     this.mesaService.getComandaFromMesa(this.mesaid).subscribe({
@@ -178,7 +179,7 @@ export class ComandasComponent {
       cancelButtonColor: '#ff4747'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.comandaService.finalizarComanda(this.mesaid, this.getTotal()).subscribe({
+        this.comandaService.finalizarComanda(this.mesaid, this.getTotal(), this.tipoPago).subscribe({
           next: () => {
             Swal.fire({
               title: '¡Comanda terminada!',
@@ -189,7 +190,7 @@ export class ComandasComponent {
               confirmButtonColor: '#47ff6f',
             }).then(() => {
               this.mesaService.limpiarMesa(this.mesaid).subscribe({
-                next:()=>{
+                next: () => {
                   this.router.navigateByUrl("/mesas");
                 }
               })
@@ -227,6 +228,10 @@ export class ComandasComponent {
     if (index !== -1) {
       this.listaComandaBebida.splice(index, 1);
     }
+  }
+
+  addTipoPago(tipoPago: string) {
+    this.tipoPago = tipoPago;
   }
 
 }

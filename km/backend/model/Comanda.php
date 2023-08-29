@@ -2,14 +2,15 @@
 
 class Comanda
 {
-    private $atributos = ['id' => null, 'fecha' => "", 'total' => 0];
+    private $atributos = ['id' => null, 'fecha' => "", 'total' => 0, 'tipo_pago' => ""];
 
 
-    public function __construct(int $id = null, string $fecha = "", int $total = 0)
+    public function __construct(int $id = null, string $fecha = "", int $total = 0, string $tipo_pago = "")
     {
         $this->id = $id;
         $this->fecha = $fecha;
         $this->total = $total;
+        $this->tipo_pago = $tipo_pago;
     }
 
 
