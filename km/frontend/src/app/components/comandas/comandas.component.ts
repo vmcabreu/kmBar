@@ -196,7 +196,8 @@ export class ComandasComponent {
               })
             });
           },
-          error: () => {
+          error: (error) => {
+            console.error(error);
             Swal.fire({
               title: '¡Tienes que añadir productos para terminar la comanda!',
               icon: 'error',
@@ -205,6 +206,7 @@ export class ComandasComponent {
               color: '#fff',
               confirmButtonColor: '#47ff6f',
             });
+
           }
         })
       }
