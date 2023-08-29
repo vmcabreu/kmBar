@@ -23,6 +23,8 @@ export class ComandasComponent {
   listaComandaBebida: Comanda[] = [];
   listaAlimentos: Comida[] = [];
   listaBebidas: Bebida[] = [];
+  listaCategoriasComida: string[] = [];
+  listaCategoriasBebida: string[] = [];
   selectedType: string = "";
   selectedCategoria: string = "";
   cantidadComida: number = 0;
@@ -51,6 +53,7 @@ export class ComandasComponent {
     this.bebidasService.getBebidas().subscribe({
       next: (bebidas: Bebida[]) => {
         this.listaBebidas = bebidas;
+        this.setCategoriasBebida();
       }
     })
   }
@@ -59,8 +62,20 @@ export class ComandasComponent {
     this.comidaService.getComida().subscribe({
       next: (comida: Comida[]) => {
         this.listaAlimentos = comida;
+        this.setCategoriasComida()
+
       }
     })
+  }
+
+  setCategoriasComida() {
+    const categoriasUnicas = new Set(this.listaAlimentos.map(alimento => alimento.categoria));
+    this.listaCategoriasComida = Array.from(categoriasUnicas);
+  }
+  
+  setCategoriasBebida() {
+    const categoriasUnicas = new Set(this.listaBebidas.map(bebida => bebida.categoria));
+    this.listaCategoriasBebida = Array.from(categoriasUnicas);
   }
 
   getListaComandaResumenComida(id: number): void {
@@ -77,6 +92,14 @@ export class ComandasComponent {
         this.listaComandaBebida = data;
       }
     );
+  }
+
+  filtrarAlimento(){
+    return this.listaAlimentos.filter(comida => comida.categoria === this.selectedCategoria)
+  }
+
+  filtrarBebida(){
+    return this.listaBebidas.filter(bebida => bebida.categoria === this.selectedCategoria)
   }
 
   getTotal() {
@@ -98,7 +121,8 @@ export class ComandasComponent {
       let newProducto: ComandaDetalles = new ComandaDetalles(0, this.idComanda, this.selectedAlimento.id, 0, this.cantidadComida)
       this.comandaService.addComandaDetalle(newProducto).subscribe({
         next: () => {
-          this.getListaComandaResumenComida(this.idComanda)
+          this.getListaComandaResumenComida(this.idComanda);
+          this.selectedType = "";
         }
       })
     } else {
@@ -108,7 +132,8 @@ export class ComandasComponent {
       let newProducto: ComandaDetalles = new ComandaDetalles(0, this.idComanda, 0, this.selectedBebida.id, this.cantidadBebida)
       this.comandaService.addComandaDetalle(newProducto).subscribe({
         next: () => {
-          this.getListaComandaResumenBebida(this.idComanda)
+          this.getListaComandaResumenBebida(this.idComanda);
+          this.selectedCategoria = "";
         }
       })
     }

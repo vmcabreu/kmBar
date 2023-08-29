@@ -83,20 +83,32 @@
           <div *ngIf="selectedType != ''">
             <div *ngIf="selectedType == 'Comida';then comidas else bebidas"></div>
             <ng-template #comidas>
-              <label for="comida" class="form-label">Selecciona la categoria</label>
+              <label for="categoriaComida" class="form-label">Selecciona la categoria</label>
+              <select class="form-select" name="categoriaComida" [(ngModel)]="selectedCategoria">
+                <option *ngFor="let categoriaComida of listaCategoriasComida" [ngValue]="categoriaComida">{{categoriaComida}}</option>
+              </select>
+              <div *ngIf="selectedCategoria != ''">
+              <label for="comida" class="form-label">Selecciona la comida</label>
               <select class="form-select" name="comida" [(ngModel)]="selectedAlimento">
-                <option *ngFor="let alimento of listaAlimentos" [ngValue]="alimento">{{alimento.nombre}}</option>
+                <option *ngFor="let alimento of filtrarAlimento()" [ngValue]="alimento">{{alimento.nombre}}</option>
               </select>
               <label for="numberComida" class="form-label">Cantidad</label>
               <input type="number" class="form-control" [(ngModel)]="cantidadComida" name="numberComida" min="1">
+              </div>
             </ng-template>
             <ng-template #bebidas>
-              <label for="bebida" class="form-label">Selecciona la bebida</label>
+              <label for="categoriaBebida" class="form-label">Selecciona la bebida</label>
+              <select class="form-select" name="categoriaBebida" [(ngModel)]="selectedCategoria">
+                <option *ngFor="let categoriaBebida of listaCategoriasBebida" [ngValue]="categoriaBebida">{{categoriaBebida}}</option>
+              </select>
+              <div *ngIf="selectedCategoria != ''">
+                <label for="bebida" class="form-label">Selecciona la bebida</label>
               <select class="form-select" name="bebida" [(ngModel)]="selectedBebida">
-                <option *ngFor="let bebidas of listaBebidas" [ngValue]="bebidas">{{bebidas.nombre}}</option>
+                <option *ngFor="let bebidas of filtrarBebida()" [ngValue]="bebidas">{{bebidas.nombre}}</option>
               </select>
               <label for="numberBebida" class="form-label">Cantidad</label>
               <input type="number" class="form-control" name="numberBebida" [(ngModel)]="cantidadBebida" min="1">
+            </div>
             </ng-template>
           </div>
           <div class="d-flex justify-content-between p-2">
