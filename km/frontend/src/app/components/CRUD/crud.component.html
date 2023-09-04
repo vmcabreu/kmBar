@@ -1,0 +1,97 @@
+<div class="d-flex gap-4 p-3">
+    <button routerLink="/" class="indexBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-90deg-left iconMenu" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z" />
+        </svg>
+    </button>
+    <h1>Gestión</h1>
+</div>
+<div class="d-flex justify-content-center align-items-center gap-2">
+    <button class="categorybtn" (click)="editarSeleccionado = 'Comida'">
+        Comidas
+    </button>
+    <button class="categorybtn" (click)="editarSeleccionado = 'Bebida'">
+        Bebidas
+    </button>
+</div>
+<div class="tablas" *ngIf="editarSeleccionado == 'Comida'">
+    <h2>Comidas</h2>
+    <table class="table p-3">
+        <tr class="tabletitle">
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th colspan="2"></th>
+        </tr>
+        <tr class="thtable" *ngFor="let comida of listaComida">
+            <td>{{ comida.nombre }}</td>
+            <td>{{ comida.categoria }}</td>
+            <td>{{ comida.precio.toFixed(2) }}€</td>
+            <td>
+                <button class="editButton" (click)="checkItemType(comida)" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Editar
+                </button>
+            </td>
+            <td><button class="deleteButton">Eliminar</button></td>
+        </tr>
+    </table>
+</div>
+<div class="tablas" *ngIf="editarSeleccionado == 'Bebida'">
+    <h2>Bebidas</h2>
+    <table class="table p-3">
+        <tr class="tabletitle">
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th colspan="2"></th>
+        </tr>
+        <tr class="thtable" *ngFor="let bebida of listaBebidas">
+            <td>{{ bebida.nombre }}</td>
+            <td>{{ bebida.categoria }}</td>
+            <td>{{ bebida.precio.toFixed(2) }}€</td>
+            <td>
+                <button class="editButton" (click)="checkItemType(bebida)" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Editar
+                </button>
+            </td>
+            <td><button class="deleteButton">Eliminar</button></td>
+        </tr>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Editar: {{ elementoSeleccionado?.nombre }}
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="nombreComida" class="form-label">Nombre</label>
+                <input [(ngModel)]="elementoSeleccionado.nombre" type="text" id="nombreComida" class="form-control"
+                    aria-describedby="passwordHelpBlock" />
+                <label for="categoria" class="form-label">Categoría</label>
+                <select [(ngModel)]="elementoSeleccionado.categoria" id="categoria" class="form-control"
+                    aria-describedby="passwordHelpBlock">
+                    <option *ngFor="let categoria of categorias" [value]="categoria">
+                        {{ categoria }}
+                    </option>
+                </select>
+                <label for="precio" class="form-label">Precio</label>
+                <input [(ngModel)]="elementoSeleccionado.precio" type="number" id="precio" class="form-control"
+                    aria-describedby="passwordHelpBlock" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

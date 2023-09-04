@@ -19,4 +19,12 @@ export class ComidaService {
     const params: HttpParams = new HttpParams().set('categoria',categoria)
     return this.http.get<Comida[]>(this.url+'comida/list.php',{params:params});
   }
+
+  editarComida(comida:Comida){
+    return this.http.put(this.url+'comida/create.php', comida);
+  }
+
+  borrarComida(id: number){
+    return this.http.delete(this.url+'comida/delete.php?id='+id);
+  }
 }

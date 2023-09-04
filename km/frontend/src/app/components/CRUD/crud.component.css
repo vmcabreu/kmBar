@@ -1,0 +1,71 @@
+.indexBtn {
+  background-color: #5c4f451f;
+  border: 3px solid #5e3500;
+  border-radius: 8px;
+  fill: #5e3500;
+}
+.iconMenu {
+  width: 32px;
+  height: 32px;
+  fill: #5e3500;
+}
+.indexBtn:hover {
+  background-color: rgb(92, 79, 69);
+  border: 3px solid #bead9f;
+  border-radius: 8px;
+  fill: #bead9f;
+}
+.indexBtn:hover .iconMenu {
+  fill: #bead9f;
+}
+
+.categorybtn {
+  width: 150px;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgb(92, 79, 69);
+  color: aliceblue;
+}
+
+.categorybtn:hover {
+  background-color: #dbd2ca;
+  color: rgb(36, 36, 36);
+}
+
+table {
+  border-spacing: 30px;
+}
+.tablas {
+  width: 100%;
+  padding: 1.5rem !important;
+}
+
+.tabletitle td,tr {
+  border-radius: 8px;
+}
+
+td,
+th {
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+tr:hover {background-color: #e4c17b;}
+
+
+.editButton{
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgb(53, 153, 75);
+  color: aliceblue;
+}
+
+.deleteButton{
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgb(207, 66, 66);
+  color: aliceblue;
+}

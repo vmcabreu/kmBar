@@ -20,4 +20,12 @@ export class BebidasService {
     return this.http.get<Bebida[]>(this.url+'bebida/list.php',{params:params});
   }
 
+  editarComida(comida:Bebida){
+    return this.http.put(this.url+'comida/create.php', comida);
+  }
+
+  borrarComida(id: number){
+    return this.http.delete(this.url+'comida/delete.php?id='+id);
+  }
+
 }

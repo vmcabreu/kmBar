@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { PrecioPipe } from './pipes/precio.pipe';
 import { AuthInterceptor } from './service/auth.interceptor';
 import { IngresosComponent } from './components/ingresos/ingresos.component';
+import { CRUDComponent } from './components/CRUD/crud.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { IngresosComponent } from './components/ingresos/ingresos.component';
     LoginComponent,
     PrecioPipe,
     IngresosComponent,
+    CRUDComponent,
   ],
   imports: [
     BrowserModule,
