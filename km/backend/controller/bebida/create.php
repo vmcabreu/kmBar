@@ -13,10 +13,27 @@ if (isset($headers['Authorization'])) {
         $postdata = file_get_contents("php://input");
         if (isset($postdata) && !empty($postdata)) {
             $request = json_decode($postdata);
-            if (trim($request->usuario) === '' || $request->passwd === '') {
-                return http_response_code(400);
+            $resultado = DAOBebida::aniadirBebida($request);
+            if ($resultado != null) {
+                http_response_code(200);
+            } else {
+                http_response_code(404);
+                echo json_encode(array("message" => "No se encontró el usuario con ID "));
             }
-            echo $request;
         }
     }
+    if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+        $postdata = file_get_contents("php://input");
+        if (isset($postdata) && !empty($postdata)) {
+            $request = json_decode($postdata);
+            $resultado = DAOBebida::modificarBebida($request);
+            if ($resultado != null) {
+                http_response_code(200);
+            } else {
+                http_response_code(404);
+                echo json_encode(array("message" => "No se encontró el usuario con ID "));
+            }
+        }
+    }
+
 }
