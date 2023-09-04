@@ -12,8 +12,9 @@ if (isset($headers['Authorization'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $postdata = file_get_contents("php://input");
         if (isset($postdata) && !empty($postdata)) {
-            $request = json_decode($postdata);
-            $resultado = DAOComida::aniadirComida($request);
+            $request = json_decode($postdata,true);
+            $comida = Comida::crearComida($request);
+            $resultado = DAOComida::aniadirComida($comida);
             if ($resultado != null) {
                 http_response_code(200);
             } else {
@@ -25,8 +26,9 @@ if (isset($headers['Authorization'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         $postdata = file_get_contents("php://input");
         if (isset($postdata) && !empty($postdata)) {
-            $request = json_decode($postdata);
-            $resultado = DAOComida::modificarComida($request);
+            $request = json_decode($postdata,true);
+            $comida = Comida::crearComida($request);
+            $resultado = DAOComida::modificarComida($comida);
             if ($resultado != null) {
                 http_response_code(200);
             } else {

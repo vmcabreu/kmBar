@@ -12,8 +12,9 @@ if (isset($headers['Authorization'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $postdata = file_get_contents("php://input");
         if (isset($postdata) && !empty($postdata)) {
-            $request = json_decode($postdata);
-            $resultado = DAOBebida::aniadirBebida($request);
+            $request = json_decode($postdata,true);
+            $bebida = Bebida::crearBebida($request);
+            $resultado = DAOBebida::aniadirBebida($bebida);
             if ($resultado != null) {
                 http_response_code(200);
             } else {
@@ -25,8 +26,9 @@ if (isset($headers['Authorization'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         $postdata = file_get_contents("php://input");
         if (isset($postdata) && !empty($postdata)) {
-            $request = json_decode($postdata);
-            $resultado = DAOBebida::modificarBebida($request);
+            $request = json_decode($postdata,true);
+            $bebida = Bebida::crearBebida($request);
+            $resultado = DAOBebida::modificarBebida($bebida);
             if ($resultado != null) {
                 http_response_code(200);
             } else {
