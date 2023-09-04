@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class CRUDComponent {
   editarSeleccionado: string = "Comida";
+  nuevoProducto: Bebida | Comida = new Comida()
   elementoSeleccionado: Bebida | Comida = new Comida()
   comidaEditada: Comida = new Comida();
   bebidaEditada: Bebida = new Bebida();
@@ -36,6 +37,15 @@ export class CRUDComponent {
   inicializarData(){    
     this.getListaBebidas();
     this.getListaComidas();
+    
+  }
+
+  getCategoria(){
+    if (this.editarSeleccionado == "Comida") {
+      this.categorias = this.categoriasComida
+    } else if (this.editarSeleccionado == "Bebida") {
+      this.categorias = this.categoriasBebida;
+    }
   }
 
   checkItemType(item: any) {
@@ -70,7 +80,63 @@ export class CRUDComponent {
     );
   }
 
-  crearProducto(){}
+  crearProducto(){
+    Swal.fire({
+      title: '¿Quieres añadir este producto de la lista?',
+      html:'Nombre: '+this.nuevoProducto.nombre+'<br>Categoria: '+this.nuevoProducto.categoria+'<br>Precio: '+this.nuevoProducto.precio.toFixed(2)+'€',
+      icon: 'info',
+      timerProgressBar: true,
+      background: '#151515',
+      color: '#fff',
+      confirmButtonText: 'Terminar',
+      confirmButtonColor: '#47ff6f',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#ff4747'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (this.editarSeleccionado == "Comida") {
+          this.comidaService.addComida(this.nuevoProducto).subscribe({
+            next: (next) => {
+              this.inicializarData();
+              Swal.fire({
+                title: '¡Añadido con éxito!',
+                icon: 'success',
+                timerProgressBar: true,
+                background: '#151515',
+                color: '#fff',
+                confirmButtonColor: '#47ff6f',
+              })
+            },
+            error: (err) => {
+              console.error(err);
+
+            }
+          })
+
+        } else {
+          this.bebidaService.addBebida(this.nuevoProducto).subscribe({
+            next: (next) => {
+              this.inicializarData();
+              Swal.fire({
+                title: '¡Añadido con éxito!',
+                icon: 'success',
+                timerProgressBar: true,
+                background: '#151515',
+                color: '#fff',
+                confirmButtonColor: '#47ff6f',
+              })
+            },
+            error: (err) => {
+              console.error(err);
+
+            }
+          })
+        }
+
+      }
+    });
+  }
 
 
   editarProducto() {

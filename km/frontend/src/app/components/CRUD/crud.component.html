@@ -16,7 +16,11 @@
     </button>
 </div>
 <div class="tablas" *ngIf="editarSeleccionado == 'Comida'">
+    <div class="d-flex justify-content-between align-items-center">
     <h2>Comidas</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal"
+    data-bs-target="#nuevoProducto" (click)="getCategoria()">Nueva Comida <strong>+</strong></button>
+</div>
     <table class="table p-3">
         <tr class="tabletitle">
             <th>Nombre</th>
@@ -39,7 +43,11 @@
     </table>
 </div>
 <div class="tablas" *ngIf="editarSeleccionado == 'Bebida'">
-    <h2>Bebidas</h2>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Bebidas</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#nuevoProducto" (click)="getCategoria()">Nueva Bebida  <strong>+</strong></button>
+    </div>
     <table class="table p-3">
         <tr class="tabletitle">
             <th>Nombre</th>
@@ -87,10 +95,44 @@
                     aria-describedby="passwordHelpBlock" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    Cerrar
                 </button>
-                <button type="button" class="btn btn-primary" (click)="editarProducto()">Save changes</button>
+                <button type="button" class="btn btn-success" (click)="editarProducto()" data-bs-dismiss="modal">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="nuevoProducto" tabindex="-1" aria-labelledby="nuevoProductoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="nuevoProductoLabel">
+                    Nuevo Producto
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="nombreComida" class="form-label">Nombre</label>
+                <input [(ngModel)]="nuevoProducto.nombre" type="text" id="nombreComida" class="form-control"
+                    aria-describedby="passwordHelpBlock" />
+                <label for="categoria" class="form-label">Categoría</label>
+                <select [(ngModel)]="nuevoProducto.categoria" id="categoria" class="form-control"
+                    aria-describedby="passwordHelpBlock">
+                    <option *ngFor="let categoria of categorias" [value]="categoria">
+                        {{ categoria }}
+                    </option>
+                </select>
+                <label for="precio" class="form-label">Precio</label>
+                <input [(ngModel)]="nuevoProducto.precio" type="number" id="precio" class="form-control"
+                    aria-describedby="passwordHelpBlock" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    Cerrar
+                </button>
+                <button type="button" class="btn btn-success" (click)="crearProducto()" data-bs-dismiss="modal">Editar</button>
             </div>
         </div>
     </div>

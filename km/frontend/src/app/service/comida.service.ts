@@ -20,6 +20,10 @@ export class ComidaService {
     return this.http.get<Comida[]>(this.url+'comida/list.php',{params:params});
   }
 
+  addComida(comida:Comida){
+    return this.http.post(this.url+'comida/create.php', comida);
+  }
+
   editarComida(comida:Comida){
     return this.http.put(this.url+'comida/create.php', comida);
   }
